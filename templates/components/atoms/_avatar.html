@@ -1,0 +1,26 @@
+{% comment %}
+  PlayMood - Avatar Atom
+  Usage: {% include 'components/atoms/_avatar.html' with src="url" alt="Name" size="md" online=True show_status=True %}
+  Sizes: sm (24px), md (36px), lg (48px), xl (64px), 2xl (96px)
+  online: True/False - controls green/grey dot color
+  show_status: True - shows the online/offline status dot
+{% endcomment %}
+{% with size=size|default:"md" %}
+<div class="friend-avatar-wrap avatar-{{ size }}"{% if id %} id="{{ id }}"{% endif %}>
+  {% if src %}
+  <img class="friend-avatar" 
+       src="{{ src }}" 
+       alt="{{ alt|default:'Avatar' }}"
+       loading="lazy">
+  {% else %}
+  <div class="friend-avatar avatar-placeholder">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </svg>
+  </div>
+  {% endif %}
+  {% if show_status %}
+    <span class="friend-status-dot {% if online %}online{% else %}offline{% endif %}"></span>
+  {% endif %}
+</div>
+{% endwith %}

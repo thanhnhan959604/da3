@@ -1,0 +1,15 @@
+{% comment %}
+  PlayMood - Button Atom
+  Usage: {% include 'components/atoms/_button.html' with text="Click me" variant="primary" %}
+  Variants: primary, secondary, ghost, outline
+  Sizes: sm, md (default), lg
+{% endcomment %}
+<button class="pm-btn pm-btn-{{ variant|default:'primary' }} {% if size %}pm-btn-{{ size }}{% endif %} {% if class %}{{ class }}{% endif %}" 
+        {% if id %}id="{{ id }}"{% endif %}
+        {% if type %}type="{{ type }}"{% endif %}
+        {% if disabled %}disabled{% endif %}
+        {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}>
+  {% if icon_before %}{{ icon_before|safe }}{% endif %}
+  {{ text }}
+  {% if icon_after %}{{ icon_after|safe }}{% endif %}
+</button>

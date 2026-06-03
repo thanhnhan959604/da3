@@ -1,0 +1,53 @@
+/* ============================================
+   PlayMood - Shadow System
+   Multi-layer soft shadows for healing feel
+   ============================================ */
+
+:root {
+  /* ---- Shadow Layers ---- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15),
+               0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2),
+               0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25),
+               0 8px 16px rgba(0, 0, 0, 0.12);
+
+  /* ---- Glow Shadows (accent-colored) ---- */
+  --shadow-glow-primary: 0 4px 20px var(--accent-primary-glow),
+                         0 0 40px rgba(168, 216, 185, 0.1);
+  --shadow-glow-secondary: 0 4px 20px var(--accent-secondary-glow);
+  --shadow-glow-tertiary: 0 4px 20px var(--accent-tertiary-glow);
+  --shadow-glow-coral: 0 4px 20px var(--accent-coral-glow);
+
+  /* ---- Special Shadows ---- */
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15),
+                 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.22),
+                       0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-player: 0 -4px 20px rgba(0, 0, 0, 0.3),
+                   0 -1px 6px rgba(0, 0, 0, 0.15);
+  --shadow-sidebar: 4px 0 16px rgba(0, 0, 0, 0.2);
+  --shadow-dropdown: 0 8px 24px rgba(0, 0, 0, 0.25),
+                     0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-modal: 0 16px 64px rgba(0, 0, 0, 0.4),
+                  0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-button: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-button-hover: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+
+  /* ---- Glass Shadow (for glassmorphism) ---- */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.15),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Shadow Utilities ---- */
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-glow { box-shadow: var(--shadow-glow-primary); }
+.shadow-card { box-shadow: var(--shadow-card); }
+.shadow-none { box-shadow: none !important; }

@@ -1,0 +1,210 @@
+/* ============================================
+   PlayMood - Music Card Molecule
+   Album art, title, artist, play overlay
+   ============================================ */
+
+.music-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.music-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-hover);
+}
+
+/* ---- Cover Image ---- */
+.music-card-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.music-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.music-card:hover .music-card-cover img {
+  transform: scale(1.05);
+}
+
+/* Play Overlay */
+.music-card-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-base);
+}
+
+.music-card:hover .music-card-play-overlay {
+  opacity: 1;
+}
+
+.music-card-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-circle);
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(8px);
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.music-card:hover .music-card-play-btn {
+  transform: translateY(0);
+}
+
+.music-card-play-btn:hover {
+  transform: scale(1.08) !important;
+}
+
+.music-card-play-btn svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 2px;
+}
+
+/* Like button on card */
+.music-card-like {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition-fast);
+  z-index: 2;
+}
+
+.music-card:hover .music-card-like {
+  opacity: 1;
+}
+
+.music-card-like.liked {
+  opacity: 1;
+  color: var(--accent-coral);
+}
+
+.music-card-like svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Card Info ---- */
+.music-card-info {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+.music-card-title {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2xs);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-card-subtitle {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Card Variants ---- */
+/* Artist Card (rounded) */
+.music-card-artist .music-card-cover {
+  border-radius: var(--radius-circle);
+  margin: var(--space-md) var(--space-md) 0;
+  width: calc(100% - var(--space-md) * 2);
+}
+
+.music-card-artist .music-card-info {
+  text-align: center;
+}
+
+/* Playlist Card (wider) */
+.music-card-playlist .music-card-cover {
+  aspect-ratio: 16 / 10;
+}
+
+/* Now Playing Indicator */
+.music-card.is-playing .music-card-title {
+  color: var(--accent-primary);
+}
+
+.music-card.is-playing .music-card-cover::after {
+  content: '';
+  position: absolute;
+  bottom: var(--space-xs);
+  left: var(--space-xs);
+  width: 24px;
+  height: 18px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+/* ---- Horizontal Card (for track list alternative) ---- */
+.music-card-horizontal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.music-card-horizontal:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+}
+
+.music-card-horizontal .music-card-cover {
+  width: 56px;
+  height: 56px;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.music-card-horizontal .music-card-info {
+  padding: 0;
+  flex: 1;
+  overflow: hidden;
+}

@@ -1,0 +1,214 @@
+/* ============================================
+   PlayMood - Grid Layout System
+   Sidebar + Main Content + Friend Panel
+   ============================================ */
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  padding-top: var(--navbar-height);
+}
+
+.app-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding-bottom: calc(var(--player-height) + var(--space-xl));
+  min-height: calc(100vh - var(--navbar-height));
+  transition: margin 0.3s ease;
+}
+
+.page-content {
+  padding: var(--space-xl) var(--space-2xl);
+  max-width: 1400px;
+}
+
+/* ---- Section Layout ---- */
+.section {
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.section-title {
+  font-family: var(--font-primary);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.section-action {
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  transition: var(--transition-fast);
+}
+
+.section-action:hover {
+  color: var(--accent-primary);
+}
+
+/* ---- Music Grid ---- */
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.music-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.music-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ---- Track List Layout ---- */
+.track-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.track-list-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 150px 60px 44px;
+  align-items: center;
+  padding: 0 var(--space-md) var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-xs);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+}
+
+.track-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 150px 60px 44px;
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: var(--space-sm);
+}
+
+.track-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.track-number {
+  font-size: var(--fs-body-sm);
+  color: var(--text-muted);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.track-title-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.track-mini-cover {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.track-title-info {
+  min-width: 0;
+}
+
+.track-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-album {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-duration {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.track-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2xs);
+}
+
+/* ---- Hero Layout ---- */
+.hero-section {
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---- Two Column Layout ---- */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+@media (max-width: 767.98px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Horizontal Scroll Container ---- */
+.scroll-container {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-xs);
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}

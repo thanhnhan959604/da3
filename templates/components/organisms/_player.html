@@ -1,0 +1,65 @@
+{% load static %}
+<!-- ===== PlayMood Player Bar ===== -->
+<div class="player-bar" id="playerBar">
+  <!-- Now Playing (Left) -->
+  <div class="player-now-playing">
+    <img class="player-cover" id="playerCover" src="https://picsum.photos/seed/track1/300/300" alt="Now playing cover">
+    <div class="player-track-info">
+      <div class="player-track-title" id="playerTitle">Có Chắc Yêu Là Đây</div>
+      <div class="player-track-artist" id="playerArtist">Sơn Tùng M-TP</div>
+    </div>
+    <button class="pm-btn-like player-like-btn" id="playerLikeBtn" aria-label="Yêu thích">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    </button>
+  </div>
+
+  <!-- Playback Controls (Center) -->
+  <div class="player-controls">
+    <div class="player-buttons">
+      <button class="player-btn player-btn-shuffle" id="playerShuffle" aria-label="Phát ngẫu nhiên">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+      </button>
+      <button class="player-btn player-btn-prev" id="playerPrev" aria-label="Bài trước">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+      </button>
+      <button class="player-btn-main" id="playerPlayBtn" aria-label="Phát/Tạm dừng">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <button class="player-btn player-btn-next" id="playerNext" aria-label="Bài tiếp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 18h2V6h-2zM6 18l8.5-6L6 6z"/></svg>
+      </button>
+      <button class="player-btn player-btn-repeat" id="playerRepeat" aria-label="Lặp lại">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+      </button>
+    </div>
+    <div class="player-progress">
+      <span class="player-time player-time-elapsed" id="playerTimeElapsed">0:00</span>
+      <div class="player-progress-bar" id="playerProgressBar">
+        <div class="player-progress-fill" id="playerProgressFill" style="width: 0%"></div>
+      </div>
+      <span class="player-time player-time-duration" id="playerTimeDuration">3:54</span>
+    </div>
+  </div>
+
+  <!-- Volume & Extra Controls (Right) -->
+  <div class="player-right-controls">
+    <button class="player-btn player-btn-queue" aria-label="Hàng đợi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    </button>
+    <div class="player-volume">
+      <button class="player-btn player-btn-volume" id="playerVolumeBtn" aria-label="Âm lượng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+      </button>
+      <div class="player-volume-slider" id="playerVolumeSlider">
+        <div class="player-volume-fill" id="playerVolumeFill" style="width: 70%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Play Button (shown only on mobile) -->
+  <div class="player-mobile-play">
+    <button class="player-btn-main" aria-label="Phát/Tạm dừng" style="width:36px;height:36px;">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+  </div>
+</div>

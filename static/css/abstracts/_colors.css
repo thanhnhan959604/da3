@@ -1,0 +1,77 @@
+/* ============================================
+   PlayMood - Color System
+   Healing / Earth-tone Dark Mode Palette
+   ============================================ */
+
+:root {
+  /* ---- Background Layers ---- */
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #1f2b47;
+  --bg-elevated: #273454;
+  --bg-surface: #1e2740;
+  --bg-overlay: rgba(22, 33, 62, 0.85);
+  --bg-glass: rgba(31, 43, 71, 0.6);
+
+  /* ---- Accent Colors ---- */
+  --accent-primary: #a8d8b9;       /* Xanh lá pastel - healing, nature */
+  --accent-primary-hover: #8ecba0;
+  --accent-primary-glow: rgba(168, 216, 185, 0.25);
+
+  --accent-secondary: #f2d398;     /* Vàng ấm pastel - warmth */
+  --accent-secondary-hover: #edc476;
+  --accent-secondary-glow: rgba(242, 211, 152, 0.25);
+
+  --accent-tertiary: #d4a5c7;      /* Tím lavender nhạt - calm */
+  --accent-tertiary-hover: #c78db8;
+  --accent-tertiary-glow: rgba(212, 165, 199, 0.25);
+
+  --accent-coral: #e8a598;         /* San hô nhạt - comfort */
+  --accent-coral-hover: #df8d7e;
+  --accent-coral-glow: rgba(232, 165, 152, 0.25);
+
+  --accent-sky: #8ec5e8;           /* Xanh dương nhạt - serenity */
+  --accent-sky-hover: #6eb5e0;
+
+  /* ---- Text Colors ---- */
+  --text-primary: #e8e6e3;
+  --text-secondary: #a0a0b0;
+  --text-muted: #6b6b80;
+  --text-disabled: #4a4a5e;
+  --text-inverse: #1a1a2e;
+  --text-link: #a8d8b9;
+  --text-link-hover: #8ecba0;
+
+  /* ---- Semantic Colors ---- */
+  --color-success: #7dd3a1;
+  --color-warning: #f2d398;
+  --color-error: #e88a8a;
+  --color-info: #8ec5e8;
+  --color-online: #7dd3a1;
+  --color-offline: #6b6b80;
+
+  /* ---- Border Colors ---- */
+  --border-default: rgba(168, 216, 185, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(168, 216, 185, 0.25);
+  --border-focus: var(--accent-primary);
+
+  /* ---- Gradient Presets ---- */
+  --gradient-healing: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1f2b47 100%);
+  --gradient-mood-happy: linear-gradient(135deg, #f2d398 0%, #e8a598 100%);
+  --gradient-mood-sad: linear-gradient(135deg, #8ec5e8 0%, #d4a5c7 100%);
+  --gradient-mood-chill: linear-gradient(135deg, #a8d8b9 0%, #8ec5e8 100%);
+  --gradient-mood-healing: linear-gradient(135deg, #a8d8b9 0%, #d4a5c7 100%);
+  --gradient-mood-focus: linear-gradient(135deg, #273454 0%, #16213e 100%);
+  --gradient-mood-romantic: linear-gradient(135deg, #e8a598 0%, #d4a5c7 100%);
+  --gradient-card-shine: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  --gradient-player: linear-gradient(180deg, transparent 0%, rgba(26, 26, 46, 0.95) 100%);
+
+  /* ---- Mood Badge Gradients ---- */
+  --mood-vui: linear-gradient(135deg, #f2d398, #e8a598);
+  --mood-buon: linear-gradient(135deg, #8ec5e8, #b8c5e8);
+  --mood-chill: linear-gradient(135deg, #a8d8b9, #8ec5e8);
+  --mood-chualanh: linear-gradient(135deg, #a8d8b9, #d4a5c7);
+  --mood-taptrung: linear-gradient(135deg, #273454, #3a4f7a);
+  --mood-langman: linear-gradient(135deg, #e8a598, #d4a5c7);
+}

@@ -1,0 +1,16 @@
+/* ============================================
+   PlayMood - Fonts
+   Using Google Fonts CDN (imported in _typography.css)
+   
+   Fonts used:
+   - Quicksand (300, 400, 500, 600, 700) - Headings & UI
+   - Inter (300, 400, 500, 600, 700) - Body text
+   
+   CDN URL:
+   https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap
+   
+   If you need to self-host fonts for offline/performance:
+   1. Download from https://fonts.google.com
+   2. Place .woff2 files in this directory
+   3. Update _typography.css @font-face declarations
+   ============================================ */

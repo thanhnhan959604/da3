@@ -1,0 +1,159 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Khám phá - PlayMood{% endblock %}
+
+{% block content %}
+<section class="section fade-in">
+  <div class="section-header">
+    <h1 class="section-title">Khám phá</h1>
+  </div>
+
+  <!-- Genre Filter Tabs -->
+  <div class="d-flex gap-xs flex-wrap mb-xl" id="genreFilters">
+    <button class="pm-tag active" data-genre="all">Tất cả</button>
+    <button class="pm-tag" data-genre="V-Pop">V-Pop</button>
+    <button class="pm-tag" data-genre="Ballad">Ballad</button>
+    <button class="pm-tag" data-genre="Pop">Pop</button>
+    <button class="pm-tag" data-genre="R&B">R&B</button>
+    <button class="pm-tag" data-genre="Lo-Fi">Lo-Fi</button>
+    <button class="pm-tag" data-genre="Indie">Indie</button>
+    <button class="pm-tag" data-genre="Rock">Rock</button>
+    <button class="pm-tag" data-genre="Jazz">Jazz</button>
+    <button class="pm-tag" data-genre="EDM">EDM</button>
+  </div>
+</section>
+
+<!-- Top Artists -->
+<section class="section fade-in" style="animation-delay:0.1s">
+  <div class="section-header">
+    <h2 class="section-title">Nghệ sĩ nổi bật</h2>
+    <a href="#" class="section-action">Xem tất cả →</a>
+  </div>
+  <div class="scroll-container" id="artistScroll">
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist1/300/300" alt="Sơn Tùng M-TP" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Sơn Tùng M-TP</div>
+        <div class="music-card-subtitle">2.5M followers</div>
+      </div>
+    </div>
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist2/300/300" alt="MONO" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">MONO</div>
+        <div class="music-card-subtitle">1.8M followers</div>
+      </div>
+    </div>
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist3/300/300" alt="Hoàng Thùy Linh" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Hoàng Thùy Linh</div>
+        <div class="music-card-subtitle">1.2M followers</div>
+      </div>
+    </div>
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist4/300/300" alt="The Weeknd" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">The Weeknd</div>
+        <div class="music-card-subtitle">45M followers</div>
+      </div>
+    </div>
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist5/300/300" alt="Ed Sheeran" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Ed Sheeran</div>
+        <div class="music-card-subtitle">80M followers</div>
+      </div>
+    </div>
+    <div class="music-card music-card-artist" style="width:160px;">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/artist6/300/300" alt="Jack - J97" loading="lazy">
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Jack - J97</div>
+        <div class="music-card-subtitle">900K followers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All Tracks -->
+<section class="section fade-in" style="animation-delay:0.2s">
+  <div class="section-header">
+    <h2 class="section-title">Tất cả bài hát</h2>
+  </div>
+  <div class="music-grid" id="exploreGrid">
+    <!-- Rendered dynamically via JS or hardcoded -->
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const grid = document.getElementById('exploreGrid');
+  let currentGenre = 'all';
+
+  function renderTracks(tracks) {
+    grid.innerHTML = tracks.map(track => `
+      <div class="music-card" data-track-id="${track.id}">
+        <div class="music-card-cover">
+          <img src="${track.cover}" alt="${track.title}">
+          <button class="music-card-like" aria-label="Yêu thích">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </button>
+          <div class="music-card-play-overlay">
+            <button class="music-card-play-btn" aria-label="Phát">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-title">${track.title}</div>
+          <div class="music-card-subtitle">${track.artist} • ${track.genre}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Bind play events
+    grid.querySelectorAll('.music-card-play-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.music-card');
+        const trackId = parseInt(card.dataset.trackId);
+        const idx = API.tracks.findIndex(t => t.id === trackId);
+        if (idx >= 0) Store.playQueue(API.tracks, idx);
+      });
+    });
+  }
+
+  // Initial load
+  const tracks = await API.getTracks();
+  renderTracks(tracks);
+
+  // Genre filter
+  document.querySelectorAll('.pm-tag[data-genre]').forEach(tag => {
+    tag.addEventListener('click', async () => {
+      document.querySelectorAll('.pm-tag').forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+      currentGenre = tag.dataset.genre;
+      const filtered = currentGenre === 'all' 
+        ? await API.getTracks() 
+        : await API.getTracks({ genre: currentGenre });
+      renderTracks(filtered);
+    });
+  });
+});
+</script>
+{% endblock %}

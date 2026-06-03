@@ -1,0 +1,539 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Có Chắc Yêu Là Đây - Sơn Tùng M-TP | PlayMood{% endblock %}
+
+{% block content %}
+<!-- ===== SONG DETAIL HERO ===== -->
+<section class="song-detail-hero fade-in" id="songDetailHero">
+  <div class="song-detail-bg" id="songDetailBg" style="background-image: url('https://picsum.photos/seed/track1/800/800');"></div>
+  <div class="song-detail-overlay"></div>
+
+  <div class="song-detail-content">
+    <!-- Cover Art -->
+    <div class="song-detail-cover-wrap">
+      <img class="song-detail-cover" src="https://picsum.photos/seed/track1/400/400" alt="Có Chắc Yêu Là Đây" id="songCoverImg">
+      <div class="song-detail-cover-glow"></div>
+    </div>
+
+    <!-- Info -->
+    <div class="song-detail-info">
+      <div class="song-detail-type">
+        <span class="song-badge">Bài hát</span>
+        <span class="song-badge song-badge-genre">V-Pop</span>
+      </div>
+
+      <h1 class="song-detail-title" id="songDetailTitle">Có Chắc Yêu Là Đây</h1>
+
+      <!-- Artist Row -->
+      <div class="song-artist-row" id="songArtistRow">
+        <img class="song-artist-avatar" src="https://picsum.photos/seed/artist1/60/60" alt="Sơn Tùng M-TP">
+        <div class="song-artist-details">
+          <div class="song-artist-name-wrap">
+            <a href="#" class="song-artist-name" id="songArtistName">Sơn Tùng M-TP</a>
+            <span class="verified-badge" title="Nghệ sĩ đã được xác thực">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><polyline points="20 6 9 17 4 12"/></svg>
+              Đã xác thực
+            </span>
+          </div>
+          <div class="song-artist-followers">2.3 triệu người theo dõi</div>
+        </div>
+        <button class="follow-btn" id="followArtistBtn" data-following="false" data-user-id="1">Theo dõi</button>
+      </div>
+
+      <!-- Metadata row -->
+      <div class="song-meta-row">
+        <div class="song-meta-item">
+          <svg class="song-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>3:54</span>
+        </div>
+        <div class="song-meta-item">
+          <svg class="song-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <span>Album: Sky Tour</span>
+        </div>
+        <div class="song-meta-item">
+          <svg class="song-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>2021</span>
+        </div>
+        <div class="song-meta-item">
+          <svg class="song-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
+          <span>1.2M lượt nghe</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="song-actions">
+        <button class="pm-btn pm-btn-play pm-btn-play-lg" id="songPlayBtn" aria-label="Phát">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+        <button class="pm-btn-like" id="songLikeBtn" aria-label="Yêu thích">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="pm-btn pm-btn-secondary pm-btn-sm" id="addToPlaylistBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Playlist
+        </button>
+        <button class="pm-btn pm-btn-ghost pm-btn-sm" id="shareBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Chia sẻ
+        </button>
+        <button class="pm-btn pm-btn-ghost pm-btn-sm" id="downloadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Tải xuống
+        </button>
+        <button class="pm-btn-icon" id="songMoreBtn" aria-label="Thêm tùy chọn" title="Thêm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SONG DESCRIPTION ===== -->
+<section class="section fade-in" style="animation-delay:0.1s">
+  <div class="song-description-card">
+    <div class="song-desc-header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;color:var(--accent-primary);"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <h2 class="song-desc-title">Giới thiệu bài hát</h2>
+    </div>
+    <p class="song-desc-text" id="songDescription">
+      "Có Chắc Yêu Là Đây" là ca khúc thuộc album <strong>Sky Tour</strong> của nghệ sĩ <strong>Sơn Tùng M-TP</strong>, phát hành năm 2021. Bài hát mang giai điệu nhẹ nhàng, sâu lắng với những câu hỏi về tình yêu — liệu những cảm xúc hiện tại có phải là tình yêu đích thực? Với âm nhạc theo phong cách V-Pop kết hợp yếu tố R&amp;B hiện đại, ca khúc đã nhanh chóng chiếm được tình cảm của hàng triệu khán giả.
+    </p>
+    <div class="song-tags">
+      <span class="song-tag">V-Pop</span>
+      <span class="song-tag">Tình cảm</span>
+      <span class="song-tag">Chill</span>
+      <span class="song-tag">R&amp;B</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LYRICS ===== -->
+<section class="section fade-in" style="animation-delay:0.15s">
+  <div class="lyrics-card">
+    <div class="lyrics-card-header">
+      <h2 class="section-title">Lời bài hát</h2>
+      <button class="pm-btn pm-btn-ghost pm-btn-sm" id="toggleLyricsBtn">Xem thêm</button>
+    </div>
+    <div class="lyrics-content" id="lyricsContent">
+      <p class="lyrics-line">Có chắc yêu là đây, có chắc đây là yêu</p>
+      <p class="lyrics-line">Những rung cảm trong tim em có phải là tình yêu</p>
+      <p class="lyrics-line">Anh không dám chắc, nhưng chỉ biết rằng</p>
+      <p class="lyrics-line">Khi nhìn vào mắt em anh thấy cả bầu trời</p>
+      <p class="lyrics-line">Mưa rơi trên phố vắng, đêm khuya dài lặng yên</p>
+      <p class="lyrics-line">Chỉ có hai ta và những giây phút bình yên này</p>
+      <p class="lyrics-line">Anh muốn hỏi em rằng, em cảm thấy thế nào</p>
+      <p class="lyrics-line">Khi ở bên anh, em có thấy lòng mình an yên?</p>
+      <p class="lyrics-line lyrics-faded">...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RELATED SONGS ===== -->
+<section class="section fade-in" style="animation-delay:0.2s">
+  <div class="section-header">
+    <h2 class="section-title">Bài hát liên quan</h2>
+    <a href="{% url 'explore' %}" class="section-action">Xem tất cả</a>
+  </div>
+  <div class="track-list-header hide-mobile">
+    <span>#</span>
+    <span>Tiêu đề</span>
+    <span>Album</span>
+    <span style="text-align:right;">Thời lượng</span>
+    <span></span>
+  </div>
+  <div class="track-list" id="relatedTrackList">
+    <div class="track-item" data-track-id="3">
+      <div class="track-number">1</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track3/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Nơi Này Có Anh</div>
+          <div class="track-artist-small">Sơn Tùng M-TP</div>
+        </div>
+      </div>
+      <div class="track-album">Singles</div>
+      <div class="track-duration">4:36</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="4">
+      <div class="track-number">2</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track4/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Chạy Ngay Đi</div>
+          <div class="track-artist-small">Sơn Tùng M-TP</div>
+        </div>
+      </div>
+      <div class="track-album">Sky Tour</div>
+      <div class="track-duration">5:12</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="6">
+      <div class="track-number">3</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track6/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Đừng Làm Trái Tim Anh Đau</div>
+          <div class="track-artist-small">Sơn Tùng M-TP</div>
+        </div>
+      </div>
+      <div class="track-album">Singles</div>
+      <div class="track-duration">4:18</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="7">
+      <div class="track-number">4</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track7/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Lạc Trôi</div>
+          <div class="track-artist-small">Sơn Tùng M-TP</div>
+        </div>
+      </div>
+      <div class="track-album">Singles</div>
+      <div class="track-duration">3:47</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="section review-section fade-in" style="animation-delay:0.25s" id="reviewSection">
+  <div class="section-header">
+    <h2 class="section-title">Đánh giá &amp; Bình luận</h2>
+  </div>
+  <div class="review-form" id="reviewForm">
+    <img class="review-form-avatar" src="https://i.pravatar.cc/150?u=me" alt="Your avatar">
+    <div class="review-form-content">
+      <div class="star-rating" id="starRating">
+        <button class="star-rating-btn" data-star="1" aria-label="1 sao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button class="star-rating-btn" data-star="2" aria-label="2 sao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button class="star-rating-btn" data-star="3" aria-label="3 sao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button class="star-rating-btn" data-star="4" aria-label="4 sao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+        <button class="star-rating-btn" data-star="5" aria-label="5 sao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </button>
+      </div>
+      <textarea class="pm-textarea" id="reviewText" placeholder="Chia sẻ cảm nhận của bạn về bài hát này..." rows="3"></textarea>
+      <button class="pm-btn pm-btn-primary pm-btn-sm mt-sm" id="submitReviewBtn">Gửi đánh giá</button>
+    </div>
+  </div>
+  <div class="comment-list" id="commentList">
+    <div class="comment-item">
+      <img class="comment-avatar" src="https://i.pravatar.cc/150?u=user1" alt="Minh Anh">
+      <div class="comment-content">
+        <div class="comment-header">
+          <span class="comment-author">Minh Anh</span>
+          <div class="comment-stars">
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+          </div>
+          <span class="comment-time">1 ngày trước</span>
+        </div>
+        <p class="comment-text">Bài này nghe chữa lành quá! Cứ mỗi khi buồn lại bật lên nghe</p>
+      </div>
+    </div>
+    <div class="comment-item">
+      <img class="comment-avatar" src="https://i.pravatar.cc/150?u=user2" alt="Hải Đăng">
+      <div class="comment-content">
+        <div class="comment-header">
+          <span class="comment-author">Hải Đăng</span>
+          <div class="comment-stars">
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+            <svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>
+          </div>
+          <span class="comment-time">2 ngày trước</span>
+        </div>
+        <p class="comment-text">Beat hay, vocal tuyệt vời. Recommend cho mọi người!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADD TO PLAYLIST MODAL ===== -->
+<div class="pm-modal-overlay" id="addToPlaylistModal" role="dialog" aria-modal="true" aria-labelledby="addToPlaylistTitle">
+  <div class="pm-modal pm-modal-sm">
+    <div class="pm-modal-header">
+      <h2 class="pm-modal-title" id="addToPlaylistTitle">Thêm vào playlist</h2>
+      <button class="pm-modal-close" id="closeAddToPlaylistModal" aria-label="Đóng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pm-modal-body">
+      <div class="playlist-option-list" id="playlistOptionList">
+        <button class="playlist-option-item">
+          <img src="https://picsum.photos/seed/pl1/80/80" alt="" class="playlist-option-cover">
+          <span>Chill Buổi Tối</span>
+        </button>
+        <button class="playlist-option-item">
+          <img src="https://picsum.photos/seed/pl2/80/80" alt="" class="playlist-option-cover">
+          <span>Chữa Lành Tâm Hồn</span>
+        </button>
+        <button class="playlist-option-item">
+          <img src="https://picsum.photos/seed/pl3/80/80" alt="" class="playlist-option-cover">
+          <span>Năng Lượng Tích Cực</span>
+        </button>
+        <button class="playlist-option-item create-new-playlist-btn">
+          <div class="playlist-option-plus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span>Tạo playlist mới</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EMAIL SEARCH MODAL ===== -->
+<div class="pm-modal-overlay" id="emailSearchModal" role="dialog" aria-modal="true" aria-labelledby="emailSearchTitle">
+  <div class="pm-modal">
+    <div class="pm-modal-header">
+      <h2 class="pm-modal-title" id="emailSearchTitle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        Tìm kiếm bạn bè
+      </h2>
+      <button class="pm-modal-close" id="closeEmailSearchModal" aria-label="Đóng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pm-modal-body">
+      <div class="email-search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="email-search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="email" class="email-search-field" id="emailSearchInput" placeholder="Nhập email bạn bè..." autocomplete="off">
+        <button class="pm-btn pm-btn-primary pm-btn-sm" id="doEmailSearchBtn">Tìm</button>
+      </div>
+      <div class="email-search-results" id="emailSearchResults">
+        <div class="email-search-empty" id="emailSearchEmpty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;color:var(--text-muted);margin-bottom:var(--space-sm);"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <p>Nhập email để tìm kiếm bạn bè</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Star Rating (SVG) ---
+  let selectedRating = 0;
+  const starBtns = document.querySelectorAll('.star-rating-btn');
+  starBtns.forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      const hoverStar = parseInt(btn.dataset.star);
+      starBtns.forEach((b, i) => {
+        const svg = b.querySelector('svg');
+        svg.style.fill = i < hoverStar ? 'var(--accent-secondary)' : 'none';
+        svg.style.stroke = i < hoverStar ? 'var(--accent-secondary)' : 'currentColor';
+      });
+    });
+    btn.addEventListener('mouseleave', () => {
+      starBtns.forEach((b, i) => {
+        const svg = b.querySelector('svg');
+        svg.style.fill = i < selectedRating ? 'var(--accent-secondary)' : 'none';
+        svg.style.stroke = i < selectedRating ? 'var(--accent-secondary)' : 'currentColor';
+      });
+    });
+    btn.addEventListener('click', () => {
+      selectedRating = parseInt(btn.dataset.star);
+      starBtns.forEach((b, i) => {
+        const svg = b.querySelector('svg');
+        svg.style.fill = i < selectedRating ? 'var(--accent-secondary)' : 'none';
+        svg.style.stroke = i < selectedRating ? 'var(--accent-secondary)' : 'currentColor';
+      });
+    });
+  });
+
+  // --- Play Button ---
+  document.getElementById('songPlayBtn').addEventListener('click', () => {
+    const track = { id: 1, title: 'Có Chắc Yêu Là Đây', artist: 'Sơn Tùng M-TP', cover: 'https://picsum.photos/seed/track1/400/400', duration: 234 };
+    if (typeof Store !== 'undefined') Store.playQueue([track], 0);
+  });
+
+  // --- Related Track Click ---
+  document.querySelectorAll('#relatedTrackList .track-item').forEach(item => {
+    item.addEventListener('dblclick', () => {
+      const id = parseInt(item.dataset.trackId);
+      if (typeof API !== 'undefined') {
+        const track = API.tracks.find(t => t.id === id);
+        if (track && typeof Store !== 'undefined') Store.playQueue([track], 0);
+      }
+    });
+  });
+
+  // --- Follow Button ---
+  const followBtn = document.getElementById('followArtistBtn');
+  followBtn.addEventListener('click', async () => {
+    const isFollowing = followBtn.dataset.following === 'true';
+    if (isFollowing) {
+      followBtn.dataset.following = 'false';
+      followBtn.classList.remove('following');
+      followBtn.textContent = 'Theo dõi';
+    } else {
+      followBtn.dataset.following = 'true';
+      followBtn.classList.add('following');
+      followBtn.textContent = 'Đang theo dõi';
+    }
+  });
+
+  // --- Like Button ---
+  const likeBtn = document.getElementById('songLikeBtn');
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('liked');
+    const svg = likeBtn.querySelector('svg');
+    if (likeBtn.classList.contains('liked')) {
+      svg.setAttribute('fill', 'var(--accent-coral)');
+      svg.setAttribute('stroke', 'var(--accent-coral)');
+    } else {
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+    }
+  });
+
+  // Track like buttons
+  document.querySelectorAll('.track-actions .pm-btn-like').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btn.classList.toggle('liked');
+      const svg = btn.querySelector('svg');
+      if (btn.classList.contains('liked')) {
+        svg.setAttribute('fill', 'var(--accent-coral)');
+        svg.setAttribute('stroke', 'var(--accent-coral)');
+      } else {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+      }
+    });
+  });
+
+  // --- Add to Playlist Modal ---
+  document.getElementById('addToPlaylistBtn').addEventListener('click', () => {
+    document.getElementById('addToPlaylistModal').classList.add('active');
+  });
+  document.getElementById('closeAddToPlaylistModal').addEventListener('click', () => {
+    document.getElementById('addToPlaylistModal').classList.remove('active');
+  });
+  document.getElementById('addToPlaylistModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
+  });
+  document.querySelectorAll('.playlist-option-item:not(.create-new-playlist-btn)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('addToPlaylistModal').classList.remove('active');
+    });
+  });
+
+  // --- Lyrics Toggle ---
+  const lyricsContent = document.getElementById('lyricsContent');
+  const toggleLyricsBtn = document.getElementById('toggleLyricsBtn');
+  let lyricsExpanded = false;
+  toggleLyricsBtn.addEventListener('click', () => {
+    lyricsExpanded = !lyricsExpanded;
+    lyricsContent.classList.toggle('expanded', lyricsExpanded);
+    toggleLyricsBtn.textContent = lyricsExpanded ? 'Thu gọn' : 'Xem thêm';
+  });
+
+  // --- Email Search Modal ---
+  window.openEmailSearchModal = () => {
+    document.getElementById('emailSearchModal').classList.add('active');
+    setTimeout(() => document.getElementById('emailSearchInput').focus(), 100);
+  };
+  document.getElementById('closeEmailSearchModal').addEventListener('click', () => {
+    document.getElementById('emailSearchModal').classList.remove('active');
+  });
+  document.getElementById('emailSearchModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
+  });
+
+  async function doEmailSearch() {
+    const email = document.getElementById('emailSearchInput').value.trim();
+    if (!email) return;
+    const resultsContainer = document.getElementById('emailSearchResults');
+    resultsContainer.innerHTML = '<div class="email-search-loading"><div class="spinner"></div></div>';
+    const results = typeof API !== 'undefined' ? await API.searchByEmail(email) : [];
+    if (!results.length) {
+      resultsContainer.innerHTML = `<div class="email-search-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;color:var(--text-muted);margin-bottom:var(--space-sm);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>Không tìm thấy người dùng với email này</p></div>`;
+      return;
+    }
+    resultsContainer.innerHTML = results.map(u => `
+      <div class="email-result-item">
+        <img class="email-result-avatar" src="https://i.pravatar.cc/150?u=${u.email}" alt="${u.name}">
+        <div class="email-result-info">
+          <div class="email-result-name">${u.name}</div>
+          <div class="email-result-email">${u.email}</div>
+        </div>
+        <button class="follow-btn follow-btn-sm" onclick="this.classList.toggle('following');this.textContent=this.classList.contains('following')?'Đang theo dõi':'Theo dõi';">Theo dõi</button>
+      </div>
+    `).join('');
+  }
+  document.getElementById('doEmailSearchBtn').addEventListener('click', doEmailSearch);
+  document.getElementById('emailSearchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doEmailSearch();
+  });
+
+  // --- Share ---
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    if (navigator.share) {
+      navigator.share({ title: 'Có Chắc Yêu Là Đây', text: 'Sơn Tùng M-TP', url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href).then(() => alert('Đã sao chép link!'));
+    }
+  });
+
+  // --- Submit Review ---
+  document.getElementById('submitReviewBtn').addEventListener('click', () => {
+    const text = document.getElementById('reviewText').value.trim();
+    if (!text || !selectedRating) { alert('Vui lòng chọn số sao và nhập nội dung đánh giá'); return; }
+    const starSvg = '<svg viewBox="0 0 12 12" fill="currentColor" style="width:12px;height:12px;"><polygon points="6 1 7.545 4.13 11 4.635 8.5 7.07 9.09 10.51 6 8.885 2.91 10.51 3.5 7.07 1 4.635 4.455 4.13"/></svg>';
+    const stars = starSvg.repeat(selectedRating);
+    const item = document.createElement('div');
+    item.className = 'comment-item';
+    item.innerHTML = `
+      <img class="comment-avatar" src="https://i.pravatar.cc/150?u=me" alt="Bạn">
+      <div class="comment-content">
+        <div class="comment-header">
+          <span class="comment-author">Bạn</span>
+          <div class="comment-stars">${stars}</div>
+          <span class="comment-time">Vừa xong</span>
+        </div>
+        <p class="comment-text">${text}</p>
+      </div>`;
+    document.getElementById('commentList').prepend(item);
+    document.getElementById('reviewText').value = '';
+    selectedRating = 0;
+    starBtns.forEach(b => { const s = b.querySelector('svg'); s.style.fill = 'none'; s.style.stroke = 'currentColor'; });
+  });
+});
+</script>
+{% endblock %}

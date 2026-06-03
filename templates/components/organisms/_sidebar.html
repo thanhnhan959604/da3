@@ -1,0 +1,117 @@
+{% load static %}
+<!-- ===== PlayMood Sidebar ===== -->
+<aside class="app-sidebar" id="appSidebar">
+  <!-- Main Navigation -->
+  <div class="sidebar-section">
+    <nav class="sidebar-nav">
+      <a href="{% url 'home' %}" class="sidebar-nav-link active" id="sideHome">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span class="nav-text">Trang chủ</span>
+      </a>
+      <a href="{% url 'explore' %}" class="sidebar-nav-link" id="sideExplore">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span class="nav-text">Khám phá</span>
+      </a>
+      <a href="{% url 'mood' %}" class="sidebar-nav-link" id="sideMood">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <span class="nav-text">Tâm trạng</span>
+      </a>
+      <a href="{% url 'playlist' %}" class="sidebar-nav-link" id="sidePlaylist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+          <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+        </svg>
+        <span class="nav-text">Playlist</span>
+      </a>
+      <a href="{% url 'upload' %}" class="sidebar-nav-link" id="sideUpload">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <span class="nav-text">Upload nhạc</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Library Section -->
+  <div class="sidebar-section">
+    <span class="sidebar-label">Thư viện</span>
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-nav-link" id="sideFavorites">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+        <span class="nav-text">Yêu thích</span>
+      </a>
+      <a href="#" class="sidebar-nav-link" id="sideRecent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="nav-text">Nghe gần đây</span>
+      </a>
+      <a href="#" class="sidebar-nav-link" id="sideDownloads">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span class="nav-text">Đã tải</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Playlists Section -->
+  <div class="sidebar-section sidebar-playlists">
+    <div class="flex-between mb-xs">
+      <span class="sidebar-label">Playlist của bạn</span>
+    </div>
+
+    <button class="sidebar-create-btn" id="createPlaylistBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      <span class="nav-text">Tạo playlist mới</span>
+    </button>
+
+    <div class="sidebar-nav" style="margin-top: var(--space-xs);">
+      <a href="{% url 'playlist' %}?id=1" class="sidebar-playlist-item">
+        <img class="sidebar-playlist-cover" src="https://picsum.photos/seed/pl1/80/80" alt="Playlist cover">
+        <div class="sidebar-playlist-info">
+          <div class="sidebar-playlist-name">Chill Buổi Tối</div>
+          <div class="sidebar-playlist-meta">25 bài hát</div>
+        </div>
+      </a>
+      <a href="{% url 'playlist' %}?id=2" class="sidebar-playlist-item">
+        <img class="sidebar-playlist-cover" src="https://picsum.photos/seed/pl2/80/80" alt="Playlist cover">
+        <div class="sidebar-playlist-info">
+          <div class="sidebar-playlist-name">Chữa Lành Tâm Hồn</div>
+          <div class="sidebar-playlist-meta">30 bài hát</div>
+        </div>
+      </a>
+      <a href="{% url 'playlist' %}?id=3" class="sidebar-playlist-item">
+        <img class="sidebar-playlist-cover" src="https://picsum.photos/seed/pl3/80/80" alt="Playlist cover">
+        <div class="sidebar-playlist-info">
+          <div class="sidebar-playlist-name">Năng Lượng Tích Cực</div>
+          <div class="sidebar-playlist-meta">18 bài hát</div>
+        </div>
+      </a>
+      <a href="{% url 'playlist' %}?id=4" class="sidebar-playlist-item">
+        <img class="sidebar-playlist-cover" src="https://picsum.photos/seed/pl5/80/80" alt="Playlist cover">
+        <div class="sidebar-playlist-info">
+          <div class="sidebar-playlist-name">Tập Trung Học Bài</div>
+          <div class="sidebar-playlist-meta">40 bài hát</div>
+        </div>
+      </a>
+      <a href="{% url 'playlist' %}?id=5" class="sidebar-playlist-item">
+        <img class="sidebar-playlist-cover" src="https://picsum.photos/seed/pl4/80/80" alt="Playlist cover">
+        <div class="sidebar-playlist-info">
+          <div class="sidebar-playlist-name">Lãng Mạn Bên Anh/Em</div>
+          <div class="sidebar-playlist-meta">22 bài hát</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</aside>

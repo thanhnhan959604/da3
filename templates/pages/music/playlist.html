@@ -1,0 +1,527 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Playlist - PlayMood{% endblock %}
+
+{% block content %}
+
+<!-- ===== PLAYLIST LIST VIEW (shown when no specific playlist selected) ===== -->
+<div id="playlistListView">
+
+  <!-- Header -->
+  <div class="section-header mb-xl">
+    <div>
+      <h1 class="section-title" style="font-size:var(--fs-h2);">Playlist của bạn</h1>
+      <p class="text-sm" style="color:var(--text-muted);margin-top:var(--space-xs);">{{ total_playlists|default:"5" }} playlist · {{ total_songs|default:"135" }} bài hát</p>
+    </div>
+    <button class="pm-btn pm-btn-primary pm-btn-sm" id="createPlaylistMainBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Tạo playlist mới
+    </button>
+  </div>
+
+  <!-- Filter / Sort Bar -->
+  <div class="playlist-filter-bar">
+    <div class="playlist-filter-tabs" id="playlistFilterTabs">
+      <button class="playlist-filter-tab active" data-filter="all">Tất cả</button>
+      <button class="playlist-filter-tab" data-filter="mine">Của tôi</button>
+      <button class="playlist-filter-tab" data-filter="saved">Đã lưu</button>
+      <button class="playlist-filter-tab" data-filter="collab">Cộng tác</button>
+    </div>
+    <div class="playlist-sort-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:var(--text-muted);"><line x1="4" y1="6" x2="11" y2="6"/><line x1="4" y1="12" x2="17" y2="12"/><line x1="4" y1="18" x2="23" y2="18"/></svg>
+      <select class="playlist-sort-select" id="playlistSortSelect">
+        <option value="recent">Gần đây nhất</option>
+        <option value="name">Tên A-Z</option>
+        <option value="songs">Nhiều bài nhất</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Playlist Grid -->
+  <div class="playlist-grid" id="playlistGrid">
+
+    <!-- Playlist Card 1 -->
+    <div class="playlist-card" data-playlist-id="1" id="plCard1">
+      <div class="playlist-card-cover-wrap">
+        <img class="playlist-card-cover" src="https://picsum.photos/seed/pl1/400/400" alt="Chill Buổi Tối">
+        <div class="playlist-card-overlay">
+          <button class="playlist-card-play-btn" aria-label="Phát playlist">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;margin-left:3px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="playlist-card-type-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="playlist-card-info">
+        <div class="playlist-card-title">Chill Buổi Tối</div>
+        <div class="playlist-card-meta">25 bài hát · 1h 42m</div>
+        <div class="playlist-card-tags">
+          <span class="playlist-card-tag">Chill</span>
+          <span class="playlist-card-tag">Lo-Fi</span>
+        </div>
+      </div>
+      <div class="playlist-card-actions">
+        <button class="pm-btn-icon playlist-card-more" title="Tùy chọn" aria-label="Tùy chọn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Playlist Card 2 -->
+    <div class="playlist-card" data-playlist-id="2" id="plCard2">
+      <div class="playlist-card-cover-wrap">
+        <img class="playlist-card-cover" src="https://picsum.photos/seed/pl2/400/400" alt="Chữa Lành Tâm Hồn">
+        <div class="playlist-card-overlay">
+          <button class="playlist-card-play-btn" aria-label="Phát playlist">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;margin-left:3px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="playlist-card-type-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="playlist-card-info">
+        <div class="playlist-card-title">Chữa Lành Tâm Hồn</div>
+        <div class="playlist-card-meta">30 bài hát · 2h 05m</div>
+        <div class="playlist-card-tags">
+          <span class="playlist-card-tag">Ballad</span>
+          <span class="playlist-card-tag">Acoustic</span>
+        </div>
+      </div>
+      <div class="playlist-card-actions">
+        <button class="pm-btn-icon playlist-card-more" title="Tùy chọn" aria-label="Tùy chọn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Playlist Card 3 -->
+    <div class="playlist-card" data-playlist-id="3" id="plCard3">
+      <div class="playlist-card-cover-wrap">
+        <img class="playlist-card-cover" src="https://picsum.photos/seed/pl3/400/400" alt="Năng Lượng Tích Cực">
+        <div class="playlist-card-overlay">
+          <button class="playlist-card-play-btn" aria-label="Phát playlist">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;margin-left:3px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="playlist-card-type-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="playlist-card-info">
+        <div class="playlist-card-title">Năng Lượng Tích Cực</div>
+        <div class="playlist-card-meta">18 bài hát · 1h 12m</div>
+        <div class="playlist-card-tags">
+          <span class="playlist-card-tag">Pop</span>
+          <span class="playlist-card-tag">Upbeat</span>
+        </div>
+      </div>
+      <div class="playlist-card-actions">
+        <button class="pm-btn-icon playlist-card-more" title="Tùy chọn" aria-label="Tùy chọn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Playlist Card 4 -->
+    <div class="playlist-card" data-playlist-id="4" id="plCard4">
+      <div class="playlist-card-cover-wrap">
+        <img class="playlist-card-cover" src="https://picsum.photos/seed/pl5/400/400" alt="Tập Trung Học Bài">
+        <div class="playlist-card-overlay">
+          <button class="playlist-card-play-btn" aria-label="Phát playlist">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;margin-left:3px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="playlist-card-type-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="playlist-card-info">
+        <div class="playlist-card-title">Tập Trung Học Bài</div>
+        <div class="playlist-card-meta">40 bài hát · 2h 48m</div>
+        <div class="playlist-card-tags">
+          <span class="playlist-card-tag">Instrumental</span>
+          <span class="playlist-card-tag">Ambient</span>
+        </div>
+      </div>
+      <div class="playlist-card-actions">
+        <button class="pm-btn-icon playlist-card-more" title="Tùy chọn" aria-label="Tùy chọn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Playlist Card 5 -->
+    <div class="playlist-card" data-playlist-id="5" id="plCard5">
+      <div class="playlist-card-cover-wrap">
+        <img class="playlist-card-cover" src="https://picsum.photos/seed/pl4/400/400" alt="Lãng Mạn Bên Anh/Em">
+        <div class="playlist-card-overlay">
+          <button class="playlist-card-play-btn" aria-label="Phát playlist">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;margin-left:3px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="playlist-card-type-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="playlist-card-info">
+        <div class="playlist-card-title">Lãng Mạn Bên Anh/Em</div>
+        <div class="playlist-card-meta">22 bài hát · 1h 28m</div>
+        <div class="playlist-card-tags">
+          <span class="playlist-card-tag">Ballad</span>
+          <span class="playlist-card-tag">Romantic</span>
+        </div>
+      </div>
+      <div class="playlist-card-actions">
+        <button class="pm-btn-icon playlist-card-more" title="Tùy chọn" aria-label="Tùy chọn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Create New Card -->
+    <div class="playlist-card playlist-card-new" id="plCardNew">
+      <div class="playlist-card-new-inner" id="createPlaylistCardBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Tạo playlist mới</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== PLAYLIST DETAIL VIEW (shown when clicking a playlist) ===== -->
+<div id="playlistDetailView" style="display:none;">
+
+  <!-- Back Button -->
+  <button class="playlist-back-btn" id="playlistBackBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Tất cả playlist
+  </button>
+
+  <!-- Playlist Hero -->
+  <div class="playlist-hero fade-in">
+    <div class="playlist-hero-bg" id="playlistHeroBg" style="background-image:url('https://picsum.photos/seed/pl1/800/800');"></div>
+    <div class="playlist-hero-overlay"></div>
+    <div class="playlist-hero-content">
+      <img class="playlist-hero-cover" src="https://picsum.photos/seed/pl1/300/300" alt="" id="playlistHeroCover">
+      <div class="playlist-hero-info">
+        <div class="playlist-hero-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Playlist
+        </div>
+        <h1 class="playlist-hero-title" id="playlistHeroTitle">Chill Buổi Tối</h1>
+        <div class="playlist-hero-meta">
+          <img class="playlist-hero-owner-avatar" src="https://i.pravatar.cc/150?u=me" alt="Owner">
+          <span class="playlist-hero-owner">Thanh</span>
+          <span class="playlist-hero-dot">·</span>
+          <span id="playlistHeroSongCount">25 bài hát</span>
+          <span class="playlist-hero-dot">·</span>
+          <span id="playlistHeroDuration">1h 42m</span>
+        </div>
+        <p class="playlist-hero-desc" id="playlistHeroDesc">Tổng hợp những bài nhạc chill dành cho buổi tối, giúp thư giãn và thả lỏng tâm trí sau một ngày dài.</p>
+        <div class="playlist-hero-actions">
+          <button class="pm-btn pm-btn-play pm-btn-play-lg" id="playlistPlayBtn" aria-label="Phát tất cả">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <button class="pm-btn pm-btn-secondary pm-btn-sm" id="playlistShuffleBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            Ngẫu nhiên
+          </button>
+          <button class="pm-btn pm-btn-ghost pm-btn-sm" id="playlistShareBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Chia sẻ
+          </button>
+          <button class="pm-btn-icon" id="playlistEditBtn" title="Chỉnh sửa playlist">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Track List -->
+  <div class="section fade-in" style="animation-delay:0.1s;">
+    <div class="section-header">
+      <h2 class="section-title">Danh sách bài hát</h2>
+      <button class="pm-btn pm-btn-ghost pm-btn-sm" id="addSongToPlaylistBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Thêm bài hát
+      </button>
+    </div>
+
+    <div class="track-list-header hide-mobile">
+      <span>#</span>
+      <span>Tiêu đề</span>
+      <span>Nghệ sĩ</span>
+      <span style="text-align:right;">Thời lượng</span>
+      <span></span>
+    </div>
+
+    <div class="track-list" id="playlistTrackList">
+      {% for i in "12345678" %}
+      <div class="track-item playlist-track-item" data-index="{{ forloop.counter }}">
+        <div class="track-number">{{ forloop.counter }}</div>
+        <div class="track-title-cell">
+          <img class="track-mini-cover" src="https://picsum.photos/seed/track{{ forloop.counter }}/80/80" alt="" loading="lazy">
+          <div class="track-title-info">
+            <div class="track-title">
+              {% if forloop.counter == 1 %}Có Chắc Yêu Là Đây
+              {% elif forloop.counter == 2 %}Nơi Này Có Anh
+              {% elif forloop.counter == 3 %}Chạy Ngay Đi
+              {% elif forloop.counter == 4 %}Lạc Trôi
+              {% elif forloop.counter == 5 %}Hãy Trao Cho Anh
+              {% elif forloop.counter == 6 %}Muộn Rồi Mà Sao Còn
+              {% elif forloop.counter == 7 %}Đừng Làm Trái Tim Anh Đau
+              {% else %}Sóng Gió{% endif %}
+            </div>
+            <div class="track-artist-small">
+              {% if forloop.counter <= 7 %}Sơn Tùng M-TP{% else %}Jack &amp; K-ICM{% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="track-album hide-mobile">
+          {% if forloop.counter == 3 or forloop.counter == 5 %}Sky Tour
+          {% else %}Singles{% endif %}
+        </div>
+        <div class="track-duration">
+          {% if forloop.counter == 1 %}3:54
+          {% elif forloop.counter == 2 %}4:36
+          {% elif forloop.counter == 3 %}5:12
+          {% elif forloop.counter == 4 %}3:47
+          {% elif forloop.counter == 5 %}4:20
+          {% elif forloop.counter == 6 %}4:05
+          {% elif forloop.counter == 7 %}4:18
+          {% else %}3:32{% endif %}
+        </div>
+        <div class="track-actions">
+          <button class="pm-btn-like track-like-btn" aria-label="Yêu thích">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </button>
+          <button class="pm-btn-icon track-remove-btn" title="Xóa khỏi playlist" aria-label="Xóa khỏi playlist">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== CREATE PLAYLIST MODAL ===== -->
+<div class="pm-modal-overlay" id="createPlaylistModal" role="dialog" aria-modal="true" aria-labelledby="createPlaylistTitle">
+  <div class="pm-modal pm-modal-sm">
+    <div class="pm-modal-header">
+      <h2 class="pm-modal-title" id="createPlaylistTitle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Tạo playlist mới
+      </h2>
+      <button class="pm-modal-close" id="closeCreatePlaylistModal" aria-label="Đóng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pm-modal-body">
+      <div class="create-playlist-cover-row">
+        <div class="create-playlist-cover-pick" id="createPlaylistCoverPick">
+          <input type="file" id="createPlaylistCoverInput" accept="image/*" hidden>
+          <div class="create-playlist-cover-placeholder" id="createPlaylistCoverPlaceholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Ảnh bìa</span>
+          </div>
+          <img class="create-playlist-cover-img" id="createPlaylistCoverImg" src="" alt="" style="display:none;">
+        </div>
+        <div class="create-playlist-fields">
+          <div class="upload-field-group">
+            <label class="upload-field-label" for="newPlaylistName">Tên playlist <span class="required">*</span></label>
+            <input type="text" class="pm-input" id="newPlaylistName" placeholder="VD: Chill Buổi Tối" maxlength="100">
+          </div>
+          <div class="upload-field-group">
+            <label class="upload-field-label" for="newPlaylistDesc">Mô tả</label>
+            <textarea class="pm-textarea" id="newPlaylistDesc" placeholder="Mô tả playlist của bạn..." rows="3" style="resize:vertical;"></textarea>
+          </div>
+          <label class="upload-toggle-label mt-sm">
+            <input type="checkbox" id="newPlaylistPublic" class="upload-toggle-input" checked>
+            <span class="upload-toggle-track"><span class="upload-toggle-thumb"></span></span>
+            <span>Công khai</span>
+          </label>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:var(--space-sm);margin-top:var(--space-lg);">
+        <button class="pm-btn pm-btn-secondary pm-btn-sm" id="cancelCreatePlaylist">Hủy</button>
+        <button class="pm-btn pm-btn-primary pm-btn-sm" id="confirmCreatePlaylist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Tạo playlist
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const listView   = document.getElementById('playlistListView');
+  const detailView = document.getElementById('playlistDetailView');
+
+  // ---- Playlist data ----
+  const playlists = {
+    1: { title:'Chill Buổi Tối',      cover:'pl1', songs:25, duration:'1h 42m', desc:'Tổng hợp những bài nhạc chill dành cho buổi tối, giúp thư giãn và thả lỏng tâm trí sau một ngày dài.' },
+    2: { title:'Chữa Lành Tâm Hồn',   cover:'pl2', songs:30, duration:'2h 05m', desc:'Những giai điệu ngọt ngào và lời bài hát chân thành, dành cho những ai cần được chữa lành.' },
+    3: { title:'Năng Lượng Tích Cực',  cover:'pl3', songs:18, duration:'1h 12m', desc:'Bộ sưu tập nhạc năng động, sôi nổi giúp bạn bắt đầu ngày mới đầy năng lượng.' },
+    4: { title:'Tập Trung Học Bài',    cover:'pl5', songs:40, duration:'2h 48m', desc:'Nhạc không lời và ambient music giúp tập trung, tăng hiệu suất làm việc và học tập.' },
+    5: { title:'Lãng Mạn Bên Anh/Em', cover:'pl4', songs:22, duration:'1h 28m', desc:'Những tình khúc lãng mạn dành để lắng nghe cùng người thương.' },
+  };
+
+  // ---- Open playlist detail ----
+  function openPlaylist(id) {
+    const pl = playlists[id];
+    if (!pl) return;
+    document.getElementById('playlistHeroTitle').textContent   = pl.title;
+    document.getElementById('playlistHeroSongCount').textContent = pl.songs + ' bài hát';
+    document.getElementById('playlistHeroDuration').textContent = pl.duration;
+    document.getElementById('playlistHeroDesc').textContent    = pl.desc;
+    document.getElementById('playlistHeroCover').src           = `https://picsum.photos/seed/${pl.cover}/300/300`;
+    document.getElementById('playlistHeroBg').style.backgroundImage = `url('https://picsum.photos/seed/${pl.cover}/800/800')`;
+    listView.style.display   = 'none';
+    detailView.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Card clicks
+  document.querySelectorAll('.playlist-card:not(.playlist-card-new)').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.playlist-card-more') || e.target.closest('.playlist-card-play-btn')) return;
+      openPlaylist(parseInt(card.dataset.playlistId));
+    });
+  });
+
+  // Play buttons on cards
+  document.querySelectorAll('.playlist-card-play-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = btn.closest('.playlist-card');
+      openPlaylist(parseInt(card.dataset.playlistId));
+    });
+  });
+
+  // Back button
+  document.getElementById('playlistBackBtn').addEventListener('click', () => {
+    detailView.style.display = 'none';
+    listView.style.display   = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ---- Filter tabs ----
+  document.querySelectorAll('.playlist-filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.playlist-filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // ---- Playlist actions ----
+  document.getElementById('playlistPlayBtn').addEventListener('click', () => {
+    if (typeof Store !== 'undefined') {
+      const tracks = Array.from(document.querySelectorAll('.playlist-track-item')).map((item, i) => ({
+        id: i + 100, title: item.querySelector('.track-title').textContent.trim(),
+        artist: item.querySelector('.track-artist-small').textContent.trim(),
+        cover: item.querySelector('.track-mini-cover').src, duration: 240
+      }));
+      Store.playQueue(tracks, 0);
+    }
+  });
+
+  document.getElementById('playlistShuffleBtn').addEventListener('click', () => {
+    document.getElementById('playlistShuffleBtn').classList.toggle('active');
+  });
+
+  document.getElementById('playlistShareBtn').addEventListener('click', () => {
+    if (navigator.share) {
+      navigator.share({ title: document.getElementById('playlistHeroTitle').textContent, url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href).then(() => alert('Đã sao chép link playlist!'));
+    }
+  });
+
+  // ---- Track interactions ----
+  document.querySelectorAll('.playlist-track-item').forEach(item => {
+    item.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.track-actions')) return;
+      const idx = parseInt(item.dataset.index) - 1;
+    });
+  });
+
+  document.querySelectorAll('.track-like-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btn.classList.toggle('liked');
+      const svg = btn.querySelector('svg');
+      svg.setAttribute('fill', btn.classList.contains('liked') ? 'var(--accent-coral)' : 'none');
+      svg.setAttribute('stroke', btn.classList.contains('liked') ? 'var(--accent-coral)' : 'currentColor');
+    });
+  });
+
+  document.querySelectorAll('.track-remove-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = btn.closest('.track-item');
+      item.style.transition = 'opacity 0.3s, transform 0.3s';
+      item.style.opacity = '0';
+      item.style.transform = 'translateX(-20px)';
+      setTimeout(() => item.remove(), 300);
+    });
+  });
+
+  // ---- Create Playlist Modal ----
+  function openCreateModal() {
+    document.getElementById('createPlaylistModal').classList.add('active');
+    setTimeout(() => document.getElementById('newPlaylistName').focus(), 100);
+  }
+  function closeCreateModal() {
+    document.getElementById('createPlaylistModal').classList.remove('active');
+  }
+
+  document.getElementById('createPlaylistMainBtn').addEventListener('click', openCreateModal);
+  document.getElementById('createPlaylistCardBtn').addEventListener('click', openCreateModal);
+  document.getElementById('addSongToPlaylistBtn').addEventListener('click', () => alert('Tính năng tìm kiếm bài hát sẽ sớm ra mắt!'));
+  document.getElementById('closeCreatePlaylistModal').addEventListener('click', closeCreateModal);
+  document.getElementById('cancelCreatePlaylist').addEventListener('click', closeCreateModal);
+  document.getElementById('createPlaylistModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeCreateModal();
+  });
+
+  // Cover pick in modal
+  const createCoverInput = document.getElementById('createPlaylistCoverInput');
+  document.getElementById('createPlaylistCoverPick').addEventListener('click', () => createCoverInput.click());
+  createCoverInput.addEventListener('change', e => {
+    if (e.target.files[0]) {
+      const url = URL.createObjectURL(e.target.files[0]);
+      document.getElementById('createPlaylistCoverImg').src = url;
+      document.getElementById('createPlaylistCoverImg').style.display = 'block';
+      document.getElementById('createPlaylistCoverPlaceholder').style.display = 'none';
+    }
+  });
+
+  document.getElementById('confirmCreatePlaylist').addEventListener('click', () => {
+    const name = document.getElementById('newPlaylistName').value.trim();
+    if (!name) { document.getElementById('newPlaylistName').focus(); return; }
+    closeCreateModal();
+    document.getElementById('newPlaylistName').value = '';
+    document.getElementById('newPlaylistDesc').value = '';
+    alert(`Đã tạo playlist "${name}" thành công!`);
+  });
+
+  // ---- Playlist Edit ----
+  document.getElementById('playlistEditBtn').addEventListener('click', () => {
+    openCreateModal();
+  });
+
+});
+</script>
+{% endblock %}

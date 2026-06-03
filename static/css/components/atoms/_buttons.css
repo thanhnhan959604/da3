@@ -1,0 +1,211 @@
+/* ============================================
+   PlayMood - Button Atoms
+   Primary, secondary, ghost, icon buttons
+   ============================================ */
+
+.pm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-wide);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Primary */
+.pm-btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-button);
+}
+
+.pm-btn-primary:hover {
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.pm-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary */
+.pm-btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.pm-btn-secondary:hover {
+  background: var(--bg-card);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+/* Ghost */
+.pm-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.pm-btn-ghost:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Outline */
+.pm-btn-outline {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.pm-btn-outline:hover {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+}
+
+/* Icon Button */
+.pm-btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-circle);
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.pm-btn-icon:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pm-btn-icon.active {
+  color: var(--accent-primary);
+}
+
+.pm-btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Play Button (circular, special) */
+.pm-btn-play {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-circle);
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.pm-btn-play:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 24px var(--accent-primary-glow);
+}
+
+.pm-btn-play svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 2px;
+}
+
+/* Play button text/emoji fallback when no SVG */
+.pm-btn-play:not(:has(svg))::after {
+  content: '\25B6';
+  font-size: 1.2rem;
+  margin-left: 2px;
+}
+
+.pm-btn-play-lg {
+  width: 56px;
+  height: 56px;
+}
+
+.pm-btn-play-sm {
+  width: 36px;
+  height: 36px;
+}
+
+.pm-btn-play-sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Sizes */
+.pm-btn-sm {
+  padding: 0.375rem 1rem;
+  font-size: var(--fs-small);
+}
+
+.pm-btn-lg {
+  padding: 0.875rem 2rem;
+  font-size: var(--fs-body);
+}
+
+/* Like/Heart Button */
+.pm-btn-like {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+  padding: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pm-btn-like:hover {
+  color: var(--accent-coral);
+}
+
+.pm-btn-like.liked {
+  color: var(--accent-coral);
+}
+
+/* Ripple effect */
+.pm-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.pm-btn:active::after {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+  transition: 0s;
+}

@@ -1,0 +1,128 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Trang cá nhân - PlayMood{% endblock %}
+
+{% block content %}
+<!-- Profile Header -->
+<section class="fade-in" style="margin-bottom:var(--space-2xl);">
+  <div style="position:relative; padding:var(--space-3xl) var(--space-2xl); border-radius:var(--radius-xl); overflow:hidden; background:var(--gradient-healing);">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg-primary) 100%);"></div>
+    <div style="position:relative;z-index:1;display:flex;align-items:flex-end;gap:var(--space-xl);" class="detail-hero-content">
+      <div style="position:relative;">
+        <img src="https://i.pravatar.cc/150?u=me" alt="Profile" style="width:150px;height:150px;border-radius:50%;border:4px solid var(--accent-primary);box-shadow:var(--shadow-xl);object-fit:cover;">
+        <!-- No verified badge for regular user; verified artists get the badge -->
+      </div>
+      <div style="flex:1;">
+        <div class="detail-type">Hồ sơ</div>
+        <h1 class="detail-title" style="margin-bottom:var(--space-xs);">Thanh</h1>
+        <div class="detail-meta" style="flex-wrap:wrap;gap:var(--space-md);">
+          <div class="profile-stat">
+            <span class="profile-stat-num">12</span>
+            <span class="profile-stat-label">Playlist</span>
+          </div>
+          <div class="profile-stat">
+            <span class="profile-stat-num">156</span>
+            <span class="profile-stat-label">Yêu thích</span>
+          </div>
+          <div class="profile-stat profile-stat-link" id="followingStatBtn" style="cursor:pointer;">
+            <span class="profile-stat-num">8</span>
+            <span class="profile-stat-label">Đang theo dõi</span>
+          </div>
+          <div class="profile-stat profile-stat-link" id="followersStatBtn" style="cursor:pointer;">
+            <span class="profile-stat-num">24</span>
+            <span class="profile-stat-label">Người theo dõi</span>
+          </div>
+        </div>
+        <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+          <button class="pm-btn pm-btn-primary pm-btn-sm">Chỉnh sửa hồ sơ</button>
+          <button class="pm-btn pm-btn-secondary pm-btn-sm" onclick="if(typeof openEmailSearchModal==='function')openEmailSearchModal();">
+            Tìm bạn bè
+          </button>
+          <button class="pm-btn pm-btn-secondary pm-btn-sm">Chia sẻ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Favorite Tracks -->
+<section class="section fade-in" style="animation-delay:0.1s">
+  <div class="section-header">
+    <h2 class="section-title">Bài hát yêu thích ❤️</h2>
+    <a href="#" class="section-action">Xem tất cả →</a>
+  </div>
+  <div class="music-grid">
+    <div class="music-card" data-track-id="1">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track1/300/300" alt="Có Chắc Yêu Là Đây" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Có Chắc Yêu Là Đây</div>
+        <div class="music-card-subtitle">Sơn Tùng M-TP</div>
+      </div>
+    </div>
+    <div class="music-card" data-track-id="3">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track3/300/300" alt="Nơi Này Có Anh" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Nơi Này Có Anh</div>
+        <div class="music-card-subtitle">Sơn Tùng M-TP</div>
+      </div>
+    </div>
+    <div class="music-card" data-track-id="5">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track5/300/300" alt="See Tình" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">See Tình</div>
+        <div class="music-card-subtitle">Hoàng Thùy Linh</div>
+      </div>
+    </div>
+    <div class="music-card" data-track-id="8">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track8/300/300" alt="Blinding Lights" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Blinding Lights</div>
+        <div class="music-card-subtitle">The Weeknd</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Your Playlists -->
+<section class="section fade-in" style="animation-delay:0.2s">
+  <div class="section-header">
+    <h2 class="section-title">Playlist của bạn 🎧</h2>
+  </div>
+  <div class="music-grid">
+    <div class="music-card">
+      <div class="music-card-cover"><img src="https://picsum.photos/seed/pl1/300/300" alt="" loading="lazy"><div class="music-card-play-overlay"><button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div></div>
+      <div class="music-card-info"><div class="music-card-title">Chill Buổi Tối</div><div class="music-card-subtitle">25 bài hát</div></div>
+    </div>
+    <div class="music-card">
+      <div class="music-card-cover"><img src="https://picsum.photos/seed/pl2/300/300" alt="" loading="lazy"><div class="music-card-play-overlay"><button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div></div>
+      <div class="music-card-info"><div class="music-card-title">Chữa Lành Tâm Hồn</div><div class="music-card-subtitle">30 bài hát</div></div>
+    </div>
+    <div class="music-card">
+      <div class="music-card-cover"><img src="https://picsum.photos/seed/pl3/300/300" alt="" loading="lazy"><div class="music-card-play-overlay"><button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div></div>
+      <div class="music-card-info"><div class="music-card-title">Năng Lượng Tích Cực</div><div class="music-card-subtitle">18 bài hát</div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

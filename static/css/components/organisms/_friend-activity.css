@@ -1,0 +1,182 @@
+/* ============================================
+   PlayMood - Friend Activity Organism
+   Right panel showing friend listening activity
+   ============================================ */
+
+.friend-activity-panel {
+  padding: var(--space-lg) 0;
+}
+
+.friend-activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.friend-activity-title {
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.friend-activity-count {
+  font-size: var(--fs-small);
+  color: var(--color-online);
+}
+
+/* ---- Friend Item ---- */
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.friend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.friend-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.friend-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.friend-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+}
+
+.friend-status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+}
+
+.friend-status-dot.online {
+  background: var(--color-online);
+}
+
+.friend-status-dot.offline {
+  background: var(--color-offline);
+}
+
+.friend-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.friend-name {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-listening {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-top: 2px;
+}
+
+.friend-listening-track {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-listening .equalizer {
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.friend-listening .equalizer-bar {
+  width: 2px;
+  background: var(--accent-primary);
+}
+
+.friend-time {
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- Empty State ---- */
+.friend-empty {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--text-muted);
+}
+
+.friend-empty svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-md);
+  opacity: 0.4;
+}
+
+.friend-empty-text {
+  font-size: var(--fs-body-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* ---- Friend Name Row with Follow Button ---- */
+.friend-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+/* Extra-small follow button for friend list */
+.follow-btn-xs {
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1.5px solid var(--accent-primary);
+  background: transparent;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: var(--font-primary);
+  flex-shrink: 0;
+}
+
+.follow-btn-xs:hover {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+}
+
+.follow-btn-xs.following {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+}
+
+.follow-btn-xs.following:hover {
+  background: var(--accent-coral);
+  border-color: var(--accent-coral);
+}

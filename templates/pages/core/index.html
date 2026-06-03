@@ -1,0 +1,324 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}PlayMood - Trang chủ{% endblock %}
+
+{% block content %}
+<!-- ===== Hero Section ===== -->
+<section class="home-hero fade-in" id="heroSection">
+  <div class="home-hero-content">
+    <h1 class="home-hero-title">Hôm nay bạn cảm thấy <br>thế nào?</h1>
+    <p class="home-hero-subtitle">Chọn tâm trạng và để PlayMood tìm nhạc phù hợp cho bạn</p>
+    
+    <div class="home-mood-selector" id="moodSelector">
+      <div class="pm-mood-badge mood-vui" data-mood="vui">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></span>
+        <span class="pm-mood-label">Vui Vẻ</span>
+      </div>
+      <div class="pm-mood-badge mood-buon" data-mood="buon">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></span>
+        <span class="pm-mood-label">Buồn</span>
+      </div>
+      <div class="pm-mood-badge mood-chill" data-mood="chill">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span>
+        <span class="pm-mood-label">Chill</span>
+      </div>
+      <div class="pm-mood-badge mood-chualanh" data-mood="chualanh">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></span>
+        <span class="pm-mood-label">Chữa Lành</span>
+      </div>
+      <div class="pm-mood-badge mood-taptrung" data-mood="taptrung">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
+        <span class="pm-mood-label">Tập Trung</span>
+      </div>
+      <div class="pm-mood-badge mood-langman" data-mood="langman">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
+        <span class="pm-mood-label">Lãng Mạn</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Quick Pick ===== -->
+<section class="section fade-in" style="animation-delay: 0.1s" id="quickPickSection">
+  <div class="section-header">
+    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" style="margin-right:8px; vertical-align:middle; color:var(--accent-secondary);"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>Chào buổi tối</h2>
+  </div>
+  <div class="quick-pick" id="quickPickGrid">
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl1/80/80" alt="Chill Buổi Tối">
+      <span>Chill Buổi Tối</span>
+    </div>
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl2/80/80" alt="Chữa Lành Tâm Hồn">
+      <span>Chữa Lành Tâm Hồn</span>
+    </div>
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl3/80/80" alt="Năng Lượng Tích Cực">
+      <span>Năng Lượng Tích Cực</span>
+    </div>
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl5/80/80" alt="Tập Trung Học Bài">
+      <span>Tập Trung Học Bài</span>
+    </div>
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl4/80/80" alt="Lãng Mạn Bên Anh/Em">
+      <span>Lãng Mạn Bên Anh/Em</span>
+    </div>
+    <div class="quick-pick-card">
+      <img src="https://picsum.photos/seed/pl6/80/80" alt="Rainy Day Vibes">
+      <span>Rainy Day Vibes</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recently Played ===== -->
+<section class="section fade-in" style="animation-delay: 0.2s" id="recentlyPlayedSection">
+  <div class="section-header">
+    <h2 class="section-title">Nghe gần đây</h2>
+    <a href="#" class="section-action">Xem tất cả →</a>
+  </div>
+  <div class="music-grid" id="recentlyPlayedGrid">
+    <div class="music-card" data-track-id="1">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track1/300/300" alt="Có Chắc Yêu Là Đây" loading="lazy">
+        <button class="music-card-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Có Chắc Yêu Là Đây</div>
+        <div class="music-card-subtitle">Sơn Tùng M-TP</div>
+      </div>
+    </div>
+
+    <div class="music-card" data-track-id="5">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track5/300/300" alt="See Tình" loading="lazy">
+        <button class="music-card-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">See Tình</div>
+        <div class="music-card-subtitle">Hoàng Thùy Linh</div>
+      </div>
+    </div>
+
+    <div class="music-card" data-track-id="8">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track8/300/300" alt="Blinding Lights" loading="lazy">
+        <button class="music-card-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Blinding Lights</div>
+        <div class="music-card-subtitle">The Weeknd</div>
+      </div>
+    </div>
+
+    <div class="music-card" data-track-id="10">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/track10/300/300" alt="Perfect" loading="lazy">
+        <button class="music-card-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Perfect</div>
+        <div class="music-card-subtitle">Ed Sheeran</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Recommended Playlists ===== -->
+<section class="section fade-in" style="animation-delay: 0.3s" id="recommendedSection">
+  <div class="section-header">
+    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" style="margin-right:8px; vertical-align:middle; color:var(--accent-primary);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>Dành cho bạn</h2>
+    <a href="#" class="section-action">Xem tất cả →</a>
+  </div>
+  <div class="music-grid" id="recommendedGrid">
+    <div class="music-card">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/pl2/300/300" alt="Chữa Lành Tâm Hồn" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Chữa Lành Tâm Hồn</div>
+        <div class="music-card-subtitle">30 bài hát • Healing</div>
+      </div>
+    </div>
+
+    <div class="music-card">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/pl1/300/300" alt="Chill Buổi Tối" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Chill Buổi Tối</div>
+        <div class="music-card-subtitle">25 bài hát • Chill</div>
+      </div>
+    </div>
+
+    <div class="music-card">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/pl6/300/300" alt="Rainy Day Vibes" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Rainy Day Vibes</div>
+        <div class="music-card-subtitle">15 bài hát • Buồn</div>
+      </div>
+    </div>
+
+    <div class="music-card">
+      <div class="music-card-cover">
+        <img src="https://picsum.photos/seed/pl4/300/300" alt="Lãng Mạn Bên Anh/Em" loading="lazy">
+        <div class="music-card-play-overlay">
+          <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="music-card-info">
+        <div class="music-card-title">Lãng Mạn Bên Anh/Em</div>
+        <div class="music-card-subtitle">22 bài hát • Lãng mạn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Trending Now ===== -->
+<section class="section fade-in" style="animation-delay: 0.4s" id="trendingSection">
+  <div class="section-header">
+    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" style="margin-right:8px; vertical-align:middle; color:var(--accent-coral);"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>Thịnh hành</h2>
+    <a href="{% url 'explore' %}" class="section-action">Xem tất cả →</a>
+  </div>
+  <div class="track-list" id="trendingList">
+    <!-- Track items rendered dynamically or hardcoded -->
+    <div class="track-item" data-track-id="5">
+      <div class="track-number" style="position:relative;">1<span class="track-play-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track5/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">See Tình</div>
+        </div>
+      </div>
+      <div class="track-album">LINK</div>
+      <div class="track-duration">3:06</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="7">
+      <div class="track-number" style="position:relative;">2</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track7/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Cắt Đôi Nỗi Sầu</div>
+        </div>
+      </div>
+      <div class="track-album">Singles</div>
+      <div class="track-duration">3:30</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="2">
+      <div class="track-number" style="position:relative;">3</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track2/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Waiting For You</div>
+        </div>
+      </div>
+      <div class="track-album">Em Là</div>
+      <div class="track-duration">3:18</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="4">
+      <div class="track-number" style="position:relative;">4</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track4/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Chạy Ngay Đi</div>
+        </div>
+      </div>
+      <div class="track-album">Sky Tour</div>
+      <div class="track-duration">5:12</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      </div>
+    </div>
+    <div class="track-item" data-track-id="9">
+      <div class="track-number" style="position:relative;">5</div>
+      <div class="track-title-cell">
+        <img class="track-mini-cover" src="https://picsum.photos/seed/track9/80/80" alt="" loading="lazy">
+        <div class="track-title-info">
+          <div class="track-title">Snowman</div>
+        </div>
+      </div>
+      <div class="track-album">Everyday Is Christmas</div>
+      <div class="track-duration">3:48</div>
+      <div class="track-actions">
+        <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Mood badge click
+  document.querySelectorAll('.pm-mood-badge').forEach(badge => {
+    badge.addEventListener('click', () => {
+      document.querySelectorAll('.pm-mood-badge').forEach(b => b.classList.remove('active'));
+      badge.classList.add('active');
+      const mood = badge.dataset.mood;
+      Store.set('currentMood', mood);
+      // Could navigate to mood page: window.location.href = `/mood/?mood=${mood}`;
+    });
+  });
+
+  // Music card click-to-play
+  document.querySelectorAll('.music-card[data-track-id]').forEach(card => {
+    const playBtn = card.querySelector('.music-card-play-btn');
+    if (playBtn) {
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const trackId = parseInt(card.dataset.trackId);
+        const trackIndex = API.tracks.findIndex(t => t.id === trackId);
+        if (trackIndex >= 0) {
+          Store.playQueue(API.tracks, trackIndex);
+        }
+      });
+    }
+  });
+
+  // Track item click-to-play
+  document.querySelectorAll('.track-item[data-track-id]').forEach(item => {
+    item.addEventListener('click', () => {
+      const trackId = parseInt(item.dataset.trackId);
+      const trackIndex = API.tracks.findIndex(t => t.id === trackId);
+      if (trackIndex >= 0) {
+        Store.playQueue(API.tracks, trackIndex);
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

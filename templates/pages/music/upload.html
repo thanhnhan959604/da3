@@ -1,0 +1,315 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Upload nhạc - PlayMood{% endblock %}
+
+{% block content %}
+<section class="upload-page fade-in">
+
+  <!-- PAGE HEADER -->
+  <div class="upload-page-header">
+    <div class="upload-page-title-row">
+      <div class="upload-page-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="upload-page-title">Upload nhạc</h1>
+        <p class="upload-page-subtitle">Chia sẻ âm nhạc của bạn với cộng đồng PlayMood</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NON-VERIFIED: LOCKED STATE ===== -->
+  <div class="upload-locked-card" id="uploadLockedCard">
+    <div class="upload-locked-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0110 0v4"/>
+      </svg>
+    </div>
+    <h2 class="upload-locked-title">Tính năng dành riêng cho Nghệ sĩ</h2>
+    <p class="upload-locked-desc">
+      Để upload nhạc lên PlayMood, bạn cần được <strong>xác thực là nghệ sĩ</strong>.
+      Chỉ những tài khoản có dấu tích xanh đã xác thực mới có quyền đăng tải nhạc lên nền tảng.
+    </p>
+    <div class="upload-locked-steps">
+      <div class="upload-locked-step">
+        <div class="upload-locked-step-num">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="upload-locked-step-text">
+          <strong>Hoàn thiện hồ sơ</strong>
+          <span>Điền đầy đủ thông tin cá nhân và nghệ danh của bạn</span>
+        </div>
+      </div>
+      <div class="upload-locked-step">
+        <div class="upload-locked-step-num">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="upload-locked-step-text">
+          <strong>Gửi yêu cầu xác thực</strong>
+          <span>Nộp hồ sơ với bằng chứng hoạt động nghệ thuật</span>
+        </div>
+      </div>
+      <div class="upload-locked-step">
+        <div class="upload-locked-step-num">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="upload-locked-step-text">
+          <strong>Chờ xét duyệt</strong>
+          <span>Đội ngũ PlayMood sẽ xem xét và phê duyệt trong 3-5 ngày làm việc</span>
+        </div>
+      </div>
+    </div>
+    <div class="upload-locked-actions">
+      <a href="{% url 'profile' %}" class="pm-btn pm-btn-primary">Hoàn thiện hồ sơ</a>
+      <button class="pm-btn pm-btn-outline" id="requestVerifyBtn">Yêu cầu xác thực nghệ sĩ</button>
+    </div>
+    <div class="upload-demo-toggle">
+      <span>Xem trước giao diện:</span>
+      <button class="pm-btn pm-btn-ghost pm-btn-sm" id="previewVerifiedUI">Giao diện nghệ sĩ đã xác thực</button>
+    </div>
+  </div>
+
+  <!-- ===== VERIFIED ARTIST: UPLOAD FORM ===== -->
+  <div class="upload-verified-section" id="uploadVerifiedSection" style="display:none;">
+
+    <!-- Verified Banner -->
+    <div class="upload-verified-banner">
+      <div class="upload-verified-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="upload-verified-label">Nghệ sĩ đã xác thực</div>
+        <div class="upload-verified-sublabel">Bạn có quyền đăng tải nhạc lên PlayMood</div>
+      </div>
+    </div>
+
+    <!-- Upload Form -->
+    <div class="upload-form-card">
+      <form class="upload-form" id="uploadMusicForm" novalidate>
+
+        <!-- Drag & Drop Area -->
+        <div class="upload-dropzone" id="uploadDropzone">
+          <input type="file" id="audioFileInput" accept="audio/*,.mp3,.wav,.flac,.aac,.ogg" hidden>
+          <div class="upload-dropzone-content" id="dropzoneDefault">
+            <div class="upload-dropzone-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <h3>Kéo thả file nhạc vào đây</h3>
+            <p>hoặc</p>
+            <button type="button" class="pm-btn pm-btn-primary pm-btn-sm" id="browseAudioBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Chọn file từ máy tính
+            </button>
+            <p class="upload-hint">Hỗ trợ: MP3, WAV, FLAC, AAC, OGG — tối đa 50MB</p>
+          </div>
+          <div class="upload-dropzone-preview" id="dropzonePreview" style="display:none;">
+            <div class="upload-file-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <div class="upload-file-info">
+              <div class="upload-file-name" id="uploadFileName">audio.mp3</div>
+              <div class="upload-file-size" id="uploadFileSize">0 MB</div>
+            </div>
+            <button type="button" class="pm-btn pm-btn-ghost pm-btn-sm" id="removeAudioBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Xóa
+            </button>
+          </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="upload-fields-grid">
+          <!-- Cover -->
+          <div class="upload-cover-section">
+            <label class="upload-field-label">Ảnh bìa bài hát</label>
+            <div class="upload-cover-picker" id="coverPicker">
+              <input type="file" id="coverFileInput" accept="image/*" hidden>
+              <div class="upload-cover-placeholder" id="coverPlaceholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:36px;height:36px;color:var(--text-muted);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Chọn ảnh bìa</span>
+              </div>
+              <img class="upload-cover-preview" id="coverPreview" src="" alt="" style="display:none;">
+              <div class="upload-cover-overlay" id="coverOverlay" style="display:none;">
+                <button type="button" class="upload-cover-change-btn">Thay đổi</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text Fields -->
+          <div class="upload-text-fields">
+            <div class="upload-field-group">
+              <label class="upload-field-label" for="songTitleInput">Tên bài hát <span class="required">*</span></label>
+              <input type="text" class="pm-input" id="songTitleInput" placeholder="VD: Có Chắc Yêu Là Đây" required>
+            </div>
+            <div class="upload-field-group">
+              <label class="upload-field-label" for="artistNameInput">Tên nghệ sĩ <span class="required">*</span></label>
+              <input type="text" class="pm-input" id="artistNameInput" placeholder="VD: Sơn Tùng M-TP" required>
+            </div>
+            <div class="upload-field-row">
+              <div class="upload-field-group">
+                <label class="upload-field-label" for="albumInput">Album</label>
+                <input type="text" class="pm-input" id="albumInput" placeholder="Tên album (nếu có)">
+              </div>
+              <div class="upload-field-group">
+                <label class="upload-field-label" for="yearInput">Năm phát hành</label>
+                <input type="number" class="pm-input" id="yearInput" placeholder="2024" min="1900" max="2030">
+              </div>
+            </div>
+            <div class="upload-field-row">
+              <div class="upload-field-group">
+                <label class="upload-field-label" for="genreSelect">Thể loại</label>
+                <select class="pm-select" id="genreSelect">
+                  <option value="">Chọn thể loại</option>
+                  <option value="vpop">V-Pop</option>
+                  <option value="ballad">Ballad</option>
+                  <option value="pop">Pop</option>
+                  <option value="rnb">R&amp;B</option>
+                  <option value="lofi">Lo-Fi</option>
+                  <option value="indie">Indie</option>
+                  <option value="rock">Rock</option>
+                  <option value="jazz">Jazz</option>
+                  <option value="classical">Classical</option>
+                  <option value="edm">EDM</option>
+                </select>
+              </div>
+              <div class="upload-field-group">
+                <label class="upload-field-label" for="moodSelect">Tâm trạng</label>
+                <select class="pm-select" id="moodSelect">
+                  <option value="">Chọn tâm trạng</option>
+                  <option value="vui">Vui vẻ</option>
+                  <option value="buon">Buồn</option>
+                  <option value="chill">Chill</option>
+                  <option value="chualanh">Chữa lành</option>
+                  <option value="taptrung">Tập trung</option>
+                  <option value="langman">Lãng mạn</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="upload-field-group">
+          <label class="upload-field-label" for="songDescInput">Giới thiệu bài hát</label>
+          <textarea class="pm-textarea" id="songDescInput" placeholder="Mô tả ngắn về bài hát, hoàn cảnh ra đời, thông điệp muốn gửi gắm..." rows="4"></textarea>
+        </div>
+
+        <!-- Lyrics -->
+        <div class="upload-field-group">
+          <label class="upload-field-label" for="songLyricsInput">Lời bài hát</label>
+          <textarea class="pm-textarea" id="songLyricsInput" placeholder="Nhập lời bài hát..." rows="8" style="font-family:var(--font-mono);font-size:0.875rem;"></textarea>
+        </div>
+
+        <!-- Options -->
+        <div class="upload-options-row">
+          <label class="upload-toggle-label">
+            <input type="checkbox" id="allowDownload" class="upload-toggle-input">
+            <span class="upload-toggle-track"><span class="upload-toggle-thumb"></span></span>
+            <span>Cho phép tải xuống</span>
+          </label>
+          <label class="upload-toggle-label">
+            <input type="checkbox" id="isExplicit" class="upload-toggle-input">
+            <span class="upload-toggle-track"><span class="upload-toggle-thumb"></span></span>
+            <span>Nội dung người lớn (18+)</span>
+          </label>
+          <label class="upload-toggle-label">
+            <input type="checkbox" id="isPublic" class="upload-toggle-input" checked>
+            <span class="upload-toggle-track"><span class="upload-toggle-thumb"></span></span>
+            <span>Công khai</span>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <div class="upload-submit-row">
+          <button type="button" class="pm-btn pm-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v14a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Lưu nháp
+          </button>
+          <button type="submit" class="pm-btn pm-btn-primary upload-submit-btn" id="uploadSubmitBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Đăng tải bài hát
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('previewVerifiedUI').addEventListener('click', () => {
+    document.getElementById('uploadLockedCard').style.display = 'none';
+    document.getElementById('uploadVerifiedSection').style.display = 'block';
+  });
+  document.getElementById('requestVerifyBtn').addEventListener('click', () => {
+    alert('Yêu cầu xác thực đã được gửi! Chúng tôi sẽ liên hệ với bạn trong 3-5 ngày làm việc.');
+  });
+
+  const audioInput = document.getElementById('audioFileInput');
+  document.getElementById('browseAudioBtn').addEventListener('click', () => audioInput.click());
+  audioInput.addEventListener('change', e => { if (e.target.files[0]) showAudioPreview(e.target.files[0]); });
+  document.getElementById('removeAudioBtn').addEventListener('click', () => {
+    audioInput.value = '';
+    document.getElementById('dropzoneDefault').style.display = '';
+    document.getElementById('dropzonePreview').style.display = 'none';
+  });
+
+  const dropzone = document.getElementById('uploadDropzone');
+  ['dragenter','dragover'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('drag-over'); }));
+  ['dragleave','drop'].forEach(ev => dropzone.addEventListener(ev, () => dropzone.classList.remove('drag-over')));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('audio/')) showAudioPreview(file);
+  });
+
+  function showAudioPreview(file) {
+    document.getElementById('uploadFileName').textContent = file.name;
+    document.getElementById('uploadFileSize').textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+    document.getElementById('dropzoneDefault').style.display = 'none';
+    document.getElementById('dropzonePreview').style.display = 'flex';
+  }
+
+  const coverInput = document.getElementById('coverFileInput');
+  document.getElementById('coverPicker').addEventListener('click', () => coverInput.click());
+  coverInput.addEventListener('change', e => {
+    if (e.target.files[0]) {
+      const url = URL.createObjectURL(e.target.files[0]);
+      document.getElementById('coverPreview').src = url;
+      document.getElementById('coverPreview').style.display = 'block';
+      document.getElementById('coverPlaceholder').style.display = 'none';
+      document.getElementById('coverOverlay').style.display = 'flex';
+    }
+  });
+
+  document.getElementById('uploadMusicForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const title = document.getElementById('songTitleInput').value.trim();
+    const artist = document.getElementById('artistNameInput').value.trim();
+    if (!title || !artist) { alert('Vui lòng nhập tên bài hát và tên nghệ sĩ'); return; }
+    const btn = document.getElementById('uploadSubmitBtn');
+    btn.innerHTML = '<div class="spinner-sm"></div> Đang tải lên...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg> Đăng tải thành công!';
+      btn.style.background = 'var(--color-success)';
+    }, 2000);
+  });
+});
+</script>
+{% endblock %}

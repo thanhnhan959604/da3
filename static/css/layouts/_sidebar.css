@@ -1,0 +1,197 @@
+/* ============================================
+   PlayMood - Sidebar Navigation
+   Left sidebar with smooth hover animations
+   ============================================ */
+
+.app-sidebar {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  width: var(--sidebar-width);
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-subtle);
+  z-index: var(--z-sidebar);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+/* ---- Sidebar Sections ---- */
+.sidebar-section {
+  padding: var(--space-md) var(--space-sm);
+}
+
+.sidebar-section + .sidebar-section {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sidebar-label {
+  font-family: var(--font-primary);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  padding: var(--space-xs) var(--space-md);
+  margin-bottom: var(--space-2xs);
+}
+
+/* ---- Nav Items ---- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body-sm);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.sidebar-nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.sidebar-nav-link .nav-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(168, 216, 185, 0.08);
+}
+
+.sidebar-nav-link:hover svg {
+  color: var(--accent-primary);
+}
+
+.sidebar-nav-link.active {
+  color: var(--accent-primary);
+  background: rgba(168, 216, 185, 0.12);
+  font-weight: var(--fw-semibold);
+}
+
+.sidebar-nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--accent-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.sidebar-nav-link.active svg {
+  color: var(--accent-primary);
+}
+
+/* ---- Playlist Section ---- */
+.sidebar-playlists {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-playlist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.sidebar-playlist-item:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-playlist-cover {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sidebar-playlist-info {
+  overflow: hidden;
+}
+
+.sidebar-playlist-name {
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--fs-body-sm);
+}
+
+.sidebar-playlist-meta {
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+}
+
+/* ---- Create Playlist Button ---- */
+.sidebar-create-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body-sm);
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.sidebar-create-btn:hover {
+  color: var(--accent-primary);
+  background: rgba(168, 216, 185, 0.08);
+}
+
+.sidebar-create-btn svg {
+  width: 20px;
+  height: 20px;
+}

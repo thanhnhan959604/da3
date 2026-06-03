@@ -1,0 +1,23 @@
+{% comment %}
+  PlayMood - Input Atom
+  Usage: {% include 'components/atoms/_input.html' with name="email" label="Email" type="email" placeholder="you@example.com" %}
+{% endcomment %}
+<div class="pm-input-group {% if error %}is-error{% endif %}">
+  {% if label %}
+    <label class="auth-form-label" {% if id %}for="{{ id }}"{% endif %}>{{ label }}</label>
+  {% endif %}
+  <input type="{{ type|default:'text' }}" 
+         class="pm-input {% if error %}is-error{% endif %}" 
+         {% if id %}id="{{ id }}"{% endif %}
+         {% if name %}name="{{ name }}"{% endif %}
+         {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+         {% if value %}value="{{ value }}"{% endif %}
+         {% if required %}required{% endif %}
+         {% if disabled %}disabled{% endif %}>
+  {% if error %}
+    <span class="pm-input-error">{{ error }}</span>
+  {% endif %}
+  {% if help_text %}
+    <span class="text-small text-muted-color">{{ help_text }}</span>
+  {% endif %}
+</div>

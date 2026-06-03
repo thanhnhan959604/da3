@@ -1,0 +1,139 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Tâm trạng - PlayMood{% endblock %}
+
+{% block content %}
+<section class="section fade-in">
+  <div class="section-header">
+    <h1 class="section-title">Nghe nhạc theo tâm trạng</h1>
+  </div>
+  <p class="text-secondary-color mb-xl" style="max-width:600px;">
+    Chọn tâm trạng hiện tại và để PlayMood gợi ý những bài hát phù hợp nhất cho bạn. 
+    Âm nhạc là liều thuốc chữa lành tốt nhất
+  </p>
+
+  <!-- Mood Grid -->
+  <div class="mood-grid" id="moodGrid">
+      <div class="pm-mood-badge mood-vui" data-mood="vui" id="moodVui">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></span>
+        <span class="pm-mood-label">Vui Vẻ</span>
+      </div>
+      <div class="pm-mood-badge mood-buon" data-mood="buon" id="moodBuon">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></span>
+        <span class="pm-mood-label">Buồn</span>
+      </div>
+      <div class="pm-mood-badge mood-chill" data-mood="chill" id="moodChill">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span>
+        <span class="pm-mood-label">Chill</span>
+      </div>
+      <div class="pm-mood-badge mood-chualanh" data-mood="chualanh" id="moodHealing">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></span>
+        <span class="pm-mood-label">Chữa Lành</span>
+      </div>
+      <div class="pm-mood-badge mood-taptrung" data-mood="taptrung" id="moodFocus">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
+        <span class="pm-mood-label">Tập Trung</span>
+      </div>
+      <div class="pm-mood-badge mood-langman" data-mood="langman" id="moodRomantic">
+        <span class="pm-mood-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
+        <span class="pm-mood-label">Lãng Mạn</span>
+      </div>
+  </div>
+</section>
+
+<!-- Mood Playlists -->
+<section class="section fade-in" style="animation-delay: 0.1s" id="moodPlaylistSection">
+  <div class="section-header">
+    <h2 class="section-title" id="moodPlaylistTitle">Playlist gợi ý</h2>
+  </div>
+  <div class="music-grid" id="moodPlaylistGrid"></div>
+</section>
+
+<!-- Mood Tracks -->
+<section class="section fade-in" style="animation-delay: 0.2s" id="moodTracksSection">
+  <div class="section-header">
+    <h2 class="section-title" id="moodTracksTitle">Bài hát phù hợp</h2>
+  </div>
+  <div class="track-list" id="moodTrackList"></div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const moodNames = {
+    vui: 'Vui Vẻ', buon: 'Buồn', chill: 'Chill',
+    chualanh: 'Chữa Lành', taptrung: 'Tập Trung', langman: 'Lãng Mạn'
+  };
+
+  async function loadMood(mood) {
+    // Update UI
+    document.querySelectorAll('.pm-mood-badge').forEach(b => b.classList.remove('active'));
+    const activeBadge = document.querySelector(`[data-mood="${mood}"]`);
+    if (activeBadge) activeBadge.classList.add('active');
+
+    // Ambient color shift
+    const ambientBg = document.getElementById('ambientBg');
+    if (ambientBg) ambientBg.style.background = `var(--mood-${mood})`;
+
+    // Update titles
+    document.getElementById('moodPlaylistTitle').textContent = `Playlist ${moodNames[mood]}`;
+    document.getElementById('moodTracksTitle').textContent = `Bài hát ${moodNames[mood]}`;
+
+    // Load playlists
+    const playlists = await API.getPlaylists(mood);
+    document.getElementById('moodPlaylistGrid').innerHTML = playlists.map(pl => `
+      <div class="music-card">
+        <div class="music-card-cover">
+          <img src="${pl.cover}" alt="${pl.name}">
+          <div class="music-card-play-overlay">
+            <button class="music-card-play-btn" aria-label="Phát"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-title">${pl.name}</div>
+          <div class="music-card-subtitle">${pl.trackCount} bài hát</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Load tracks
+    const tracks = await API.getTracks({ mood });
+    document.getElementById('moodTrackList').innerHTML = tracks.map((track, i) => `
+      <div class="track-item" data-track-id="${track.id}" style="cursor:pointer;">
+        <div class="track-number">${i + 1}</div>
+        <div class="track-title-cell">
+          <img class="track-mini-cover" src="${track.cover}" alt="">
+          <div class="track-title-info">
+            <div class="track-title">${track.title}</div>
+          </div>
+        </div>
+        <div class="track-album">${track.album}</div>
+        <div class="track-duration">${Formatters.formatTime(track.duration)}</div>
+        <div class="track-actions">
+          <button class="pm-btn-like" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
+        </div>
+      </div>
+    `).join('');
+
+    // Bind track click
+    document.querySelectorAll('#moodTrackList .track-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const id = parseInt(item.dataset.trackId);
+        const idx = tracks.findIndex(t => t.id === id);
+        if (idx >= 0) Store.playQueue(tracks, idx);
+      });
+    });
+  }
+
+  // Mood badge click
+  document.querySelectorAll('.pm-mood-badge').forEach(badge => {
+    badge.addEventListener('click', () => loadMood(badge.dataset.mood));
+  });
+
+  // Default: load chill mood
+  loadMood('chill');
+});
+</script>
+{% endblock %}

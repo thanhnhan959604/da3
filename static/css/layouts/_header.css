@@ -1,0 +1,157 @@
+/* ============================================
+   PlayMood - Header / Navbar
+   Glassmorphism sticky header
+   ============================================ */
+
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xl);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: var(--glass-border);
+  transition: var(--transition-base);
+}
+
+.app-navbar.scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Logo ---- */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.navbar-logo svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-inverse);
+}
+
+.navbar-logo-text {
+  font-family: var(--font-primary);
+  font-size: 1.375rem;
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  letter-spacing: var(--ls-tight);
+}
+
+.navbar-logo-text span {
+  color: var(--accent-primary);
+}
+
+/* ---- Search (in navbar) ---- */
+.navbar-search {
+  flex: 1;
+  max-width: 480px;
+  margin: 0 var(--space-xl);
+}
+
+/* ---- Right Actions ---- */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar-action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.navbar-action-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.navbar-action-btn .notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-coral);
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+}
+
+/* ---- User Menu ---- */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.navbar-user:hover {
+  background: var(--bg-elevated);
+}
+
+.navbar-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  border: 2px solid var(--accent-primary);
+}
+
+.navbar-user-name {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+}
+
+@media (max-width: 767.98px) {
+  .app-navbar {
+    padding: 0 var(--space-md);
+  }
+
+  .navbar-search {
+    display: none;
+  }
+
+  .navbar-user-name {
+    display: none;
+  }
+
+  .navbar-logo-text {
+    font-size: 1.125rem;
+  }
+}

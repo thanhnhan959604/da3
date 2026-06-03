@@ -1,0 +1,96 @@
+/* ============================================
+   PlayMood - Search Bar Molecule
+   ============================================ */
+
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-dropdown);
+  z-index: var(--z-dropdown);
+  max-height: 400px;
+  overflow-y: auto;
+  display: none;
+  padding: var(--space-xs);
+}
+
+.search-suggestions.active {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+.search-suggestion-section {
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.search-suggestion-label {
+  font-family: var(--font-primary);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.search-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.search-suggestion-item:hover {
+  background: var(--bg-elevated);
+}
+
+.search-suggestion-img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.search-suggestion-img.rounded {
+  border-radius: var(--radius-circle);
+}
+
+.search-suggestion-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.search-suggestion-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body-sm);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-suggestion-subtitle {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.search-suggestion-type {
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  flex-shrink: 0;
+}

@@ -1,0 +1,40 @@
+{% comment %}
+  PlayMood - Form Group Molecule
+  Usage: {% include 'components/molecules/_form_group.html' with label="Email" name="email" type="email" placeholder="you@example.com" %}
+{% endcomment %}
+<div class="auth-form-group" {% if id %}id="group-{{ id }}"{% endif %}>
+  {% if label %}
+    <label class="auth-form-label" for="{{ id|default:name }}">{{ label }}</label>
+  {% endif %}
+  
+  {% if input_type == "textarea" %}
+    <textarea class="pm-textarea {% if error %}is-error{% endif %}" 
+              id="{{ id|default:name }}" 
+              name="{{ name }}" 
+              placeholder="{{ placeholder|default:'' }}"
+              rows="{{ rows|default:3 }}"
+              {% if required %}required{% endif %}>{{ value|default:'' }}</textarea>
+  {% elif input_type == "select" %}
+    <select class="pm-input {% if error %}is-error{% endif %}" 
+            id="{{ id|default:name }}" 
+            name="{{ name }}"
+            {% if required %}required{% endif %}>
+      {% for option in options %}
+        <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>{{ option.label }}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+    <input type="{{ type|default:'text' }}" 
+           class="pm-input {% if error %}is-error{% endif %}" 
+           id="{{ id|default:name }}" 
+           name="{{ name }}"
+           placeholder="{{ placeholder|default:'' }}"
+           value="{{ value|default:'' }}"
+           {% if required %}required{% endif %}
+           {% if disabled %}disabled{% endif %}>
+  {% endif %}
+  
+  {% if error %}
+    <span class="pm-input-error">{{ error }}</span>
+  {% endif %}
+</div>

@@ -1,0 +1,132 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Cài đặt - PlayMood{% endblock %}
+
+{% block content %}
+<section class="section fade-in">
+  <h1 class="section-title mb-xl">Cài đặt ⚙️</h1>
+
+  <div class="two-column">
+    <!-- Settings Form -->
+    <div>
+      <!-- Profile Settings -->
+      <div class="pm-card mb-lg">
+        <div style="padding:var(--space-lg);">
+          <h3 class="h4 mb-lg">Thông tin cá nhân</h3>
+          <form class="auth-form" id="profileSettingsForm">
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="settingsName">Họ và tên</label>
+              <input type="text" class="pm-input" id="settingsName" value="Thanh">
+            </div>
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="settingsEmail">Email</label>
+              <input type="email" class="pm-input" id="settingsEmail" value="thanh@playmood.vn">
+            </div>
+            <div class="auth-form-group">
+              <label class="auth-form-label" for="settingsBio">Giới thiệu</label>
+              <textarea class="pm-textarea" id="settingsBio" rows="3" placeholder="Viết vài dòng về bạn...">Yêu nhạc, yêu cuộc sống 🌿</textarea>
+            </div>
+            <button type="button" class="pm-btn pm-btn-primary pm-btn-sm">Lưu thay đổi</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="pm-card mb-lg">
+        <div style="padding:var(--space-lg);">
+          <h3 class="h4 mb-lg">Thông báo</h3>
+          <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+            <label class="pm-check">
+              <input type="checkbox" checked>
+              <span class="pm-check-label">Bài hát mới từ nghệ sĩ bạn theo dõi</span>
+            </label>
+            <label class="pm-check">
+              <input type="checkbox" checked>
+              <span class="pm-check-label">Bạn bè bắt đầu nghe nhạc</span>
+            </label>
+            <label class="pm-check">
+              <input type="checkbox">
+              <span class="pm-check-label">Playlist gợi ý hàng tuần</span>
+            </label>
+            <label class="pm-check">
+              <input type="checkbox" checked>
+              <span class="pm-check-label">Cập nhật và tin tức PlayMood</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy -->
+      <div class="pm-card mb-lg">
+        <div style="padding:var(--space-lg);">
+          <h3 class="h4 mb-lg">Quyền riêng tư</h3>
+          <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+            <label class="pm-check">
+              <input type="checkbox" checked>
+              <span class="pm-check-label">Hiển thị hoạt động nghe nhạc cho bạn bè</span>
+            </label>
+            <label class="pm-check">
+              <input type="checkbox">
+              <span class="pm-check-label">Cho phép người lạ xem playlist của bạn</span>
+            </label>
+            <label class="pm-check">
+              <input type="checkbox" checked>
+              <span class="pm-check-label">Hiển thị trong kết quả tìm kiếm</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div>
+      <!-- Audio Quality -->
+      <div class="pm-card mb-lg">
+        <div style="padding:var(--space-lg);">
+          <h3 class="h4 mb-lg">Chất lượng âm thanh 🎵</h3>
+          <div class="auth-form-group mb-md">
+            <label class="auth-form-label">Streaming</label>
+            <select class="pm-input" style="padding-right:2rem;">
+              <option>Tự động</option>
+              <option>Thấp (96 kbps)</option>
+              <option selected>Trung bình (160 kbps)</option>
+              <option>Cao (320 kbps)</option>
+              <option>Lossless (FLAC)</option>
+            </select>
+          </div>
+          <div class="auth-form-group">
+            <label class="auth-form-label">Tải xuống</label>
+            <select class="pm-input" style="padding-right:2rem;">
+              <option>Trung bình (160 kbps)</option>
+              <option selected>Cao (320 kbps)</option>
+              <option>Lossless (FLAC)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div class="pm-card mb-lg">
+        <div style="padding:var(--space-lg);">
+          <h3 class="h4 mb-lg">Tài khoản</h3>
+          <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+            <button class="pm-btn pm-btn-secondary pm-btn-sm w-100" style="justify-content:flex-start;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Đổi mật khẩu
+            </button>
+            <button class="pm-btn pm-btn-secondary pm-btn-sm w-100" style="justify-content:flex-start;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Tải dữ liệu của tôi
+            </button>
+            <button class="pm-btn pm-btn-secondary pm-btn-sm w-100" style="justify-content:flex-start;color:var(--color-error);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Xóa tài khoản
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% comment %}
+  PlayMood - Mood Badge Molecule
+  Usage: {% include 'components/molecules/_mood_badge.html' with mood="chill" emoji="😌" label="Chill" %}
+{% endcomment %}
+<div class="pm-mood-badge mood-{{ mood }}" data-mood="{{ mood }}" {% if id %}id="{{ id }}"{% endif %}>
+  <span class="pm-mood-emoji">{{ emoji }}</span>
+  <span class="pm-mood-label">{{ label }}</span>
+</div>
